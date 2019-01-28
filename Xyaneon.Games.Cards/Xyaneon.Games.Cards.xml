@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Xyaneon.Games.Cards</name>
+    </assembly>
+    <members>
+        <member name="T:Xyaneon.Games.Cards.Card">
+            <summary>
+            Base class representation of a playing card.
+            Cannot be directly instantiated.
+            </summary>
+        </member>
+        <member name="T:Xyaneon.Games.Cards.DrawPile`1">
+            <summary>
+            A collection of cards which can be drawn from.
+            </summary>
+            <typeparam name="TCard">
+            The type of cards stored in this draw pile.
+            Must inherit from the <see cref="T:Xyaneon.Games.Cards.Card"/> class.
+            </typeparam>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> class
+            using the provided visibility.
+            </summary>
+            <param name="isFaceUp">
+            A value indicating whether this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            is supposed to be face-up (<see langword="true"/>) or face-down
+            (<see langword="false"/>).
+            </param>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> class
+            using the provided collection of cards and visibility.
+            </summary>
+            <param name="cards">
+            The collection of cards initially present in this draw pile.
+            </param>
+            <param name="isFaceUp">
+            A value indicating whether this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            is supposed to be face-up (<see langword="true"/>) or face-down
+            (<see langword="false"/>).
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="cards"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="P:Xyaneon.Games.Cards.DrawPile`1.Cards">
+            <summary>
+            Gets a read-only view of the cards currently in this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </summary>
+        </member>
+        <member name="P:Xyaneon.Games.Cards.DrawPile`1.IsEmpty">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            is currently empty.
+            </summary>
+        </member>
+        <member name="P:Xyaneon.Games.Cards.DrawPile`1.IsFaceUp">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            is supposed to be face-up (<see langword="true"/>) or face-down
+            (<see langword="false"/>).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.DrawPile`1._cards">
+            <summary>
+            Private backing field for the <see cref="P:Xyaneon.Games.Cards.DrawPile`1.Cards"/> property.
+            </summary>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Draw">
+            <summary>
+            Draws a single <see cref="T:Xyaneon.Games.Cards.Card"/> from the top of this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> and returns it.
+            </summary>
+            <returns>
+            The <see cref="T:Xyaneon.Games.Cards.Card"/> which was at the top of this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            The draw pile is empty.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Draw(System.Int32)">
+            <summary>
+            Draws the specified number of cards from this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </summary>
+            <param name="count">
+            The number of cards to draw.
+            </param>
+            <returns>
+            The drawn cards in the order in which they were drawn.
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="count"/> exceeds the current number of cards stored
+            in this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.DrawAll">
+            <summary>
+            Draws all cards from this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </summary>
+            <returns>
+            The drawn cards in the order in which they were drawn.
+            </returns>
+            <remarks>
+            After this method is called, this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            will be empty.
+            </remarks>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.DrawAtMost(System.Int32)">
+            <summary>
+            Draws the specified number of cards from this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> if able, or all of the cards in this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> if the current number of cards it
+            currently holds is less than that.
+            </summary>
+            <param name="count">
+            The maximum number of cards to draw.
+            </param>
+            <returns>
+            The drawn cards in the order in which they were drawn. If this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> is empty at the time of the call,
+            then the returned collection will also be empty.
+            </returns>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts a single <see cref="T:Xyaneon.Games.Cards.Card"/> into this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> at the specified
+            <paramref name="index"/>.
+            </summary>
+            <param name="index">
+            The zero-based index where the <paramref name="card"/> should be
+            inserted at.
+            </param>
+            <param name="card">
+            The <see cref="T:Xyaneon.Games.Cards.Card"/> to insert.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="card"/> is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="index"/> is less than zero.
+            -or-
+            <paramref name="index"/> is greater than this object's current
+            number of cards.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.PlaceAtBottom(`0)">
+            <summary>
+            Places a single <see cref="T:Xyaneon.Games.Cards.Card"/> at the bottom of this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </summary>
+            <param name="card">
+            The <see cref="T:Xyaneon.Games.Cards.Card"/> to place at the bottom.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="card"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.PlaceOnTop(`0)">
+            <summary>
+            Places a single <see cref="T:Xyaneon.Games.Cards.Card"/> on top of this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </summary>
+            <param name="card">
+            The <see cref="T:Xyaneon.Games.Cards.Card"/> to place on top.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="card"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle">
+            <summary>
+            Shuffles all of the cards in this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            using a default shuffling algorithm.
+            </summary>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle(System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+            <summary>
+            Shuffles all of the cards in this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            using the supplied shuffling algorithm.
+            </summary>
+            <param name="shuffleAlgorithm">
+            The delegate to use which implements the custom shuffling
+            algorithm.
+            </param>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleIn(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Shuffles the provided <paramref name="cards"/> into this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> using a default shuffling algorithm.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle into this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="cards"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleIn(System.Collections.Generic.IEnumerable{`0},System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+            <summary>
+            Shuffles the provided <paramref name="cards"/> into this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> using the supplied shuffling
+            algorithm.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle into this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </param>
+            <param name="shuffleAlgorithm">
+            The delegate to use which implements the custom shuffling
+            algorithm.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="cards"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.DefaultShuffleAlgorithm(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Provides the default shuffling algorithm used by this class.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle.
+            </param>
+            <returns>
+            A new list containing the supplied <paramref name="cards"/>
+            in shuffled order.
+            </returns>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleBase(System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+            <summary>
+            The base method for shuffling the cards stored in this object.
+            The <paramref name="shuffleAlgorithm"/> must always be specified.
+            </summary>
+            <param name="shuffleAlgorithm">
+            The delegate to use which implements the desired shuffling
+            algorithm.
+            </param>
+            <remarks>
+            The <paramref name="shuffleAlgorithm"/> supplied can just be the
+            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.DefaultShuffleAlgorithm(System.Collections.Generic.IEnumerable{`0})"/> method
+            defined within this class for default behavior, such as when called
+            by the public <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle"/> method. However, an
+            alternative can be supplied when needed.
+            </remarks>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleInBase(System.Collections.Generic.IEnumerable{`0},System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+            <summary>
+            The base method for shuffling the supplied <paramref name="cards"/>
+            into this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>. The
+            <paramref name="shuffleAlgorithm"/> must always be specified.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle into this
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
+            </param>
+            <param name="shuffleAlgorithm">
+            The delegate to use which implements the desired shuffling
+            algorithm.
+            </param>
+            <remarks>
+            <para>
+            This method assumes that the <paramref name="cards"/> parameter
+            supplied was already checked to not be <see langword="null"/> by
+            the caller.
+            </para>
+            <para>
+            The <paramref name="shuffleAlgorithm"/> supplied can just be the
+            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.DefaultShuffleAlgorithm(System.Collections.Generic.IEnumerable{`0})"/> method
+            defined within this class for default behavior, such as when called
+            by the public <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle"/> method. However, an
+            alternative can be supplied when needed.
+            </para>
+            </remarks>
+        </member>
+    </members>
+</doc>
