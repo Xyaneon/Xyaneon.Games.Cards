@@ -280,5 +280,174 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank">
+            <summary>
+            Indicates the rank of a standard playing card.
+            </summary>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Ace">
+            <summary>
+            Indicates that the card is an ace (A).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Two">
+            <summary>
+            Indicates that the card is a two (2).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Three">
+            <summary>
+            Indicates that the card is a three (3).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Four">
+            <summary>
+            Indicates that the card is a four (4).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Five">
+            <summary>
+            Indicates that the card is a five (5).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Six">
+            <summary>
+            Indicates that the card is a six (6).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Seven">
+            <summary>
+            Indicates that the card is a seven (7).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Eight">
+            <summary>
+            Indicates that the card is an eight (8).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Nine">
+            <summary>
+            Indicates that the card is a nine (9).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Ten">
+            <summary>
+            Indicates that the card is a ten (10).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Jack">
+            <summary>
+            Indicates that the card is a jack (J).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Queen">
+            <summary>
+            Indicates that the card is a queen (Q).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.King">
+            <summary>
+            Indicates that the card is a king (K).
+            </summary>
+        </member>
+        <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard">
+            <summary>
+            A card from a standard 52-card deck.
+            </summary>
+            <remarks>
+            More information about a standard 52-card deck can be found here:
+            https://en.wikipedia.org/wiki/Standard_52-card_deck
+            </remarks>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank"/>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.#ctor(Xyaneon.Games.Cards.StandardPlayingCards.Rank,Xyaneon.Games.Cards.StandardPlayingCards.Suit)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> class using the provided rank
+            and suit.
+            </summary>
+            <param name="rank">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank"/> of the card.
+            </param>
+            <param name="suit">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/> of the card.
+            </param>
+        </member>
+        <member name="P:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.Rank">
+            <summary>
+            Gets the <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank"/> of this card.
+            </summary>
+        </member>
+        <member name="P:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.Suit">
+            <summary>
+            Gets the <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/> of this card.
+            </summary>
+        </member>
+        <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck">
+            <summary>
+            A deck containing standard playing cards.
+            </summary>
+            <seealso cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/> class, containing all 52
+            standard playing cards.
+            </summary>
+            <param name="isFaceUp">
+            A value indicating whether this
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/> is supposed to be face-up
+            (<see langword="true"/>) or face-down (<see langword="false"/>).
+            </param>
+            <remarks>
+            This constructor creates a deck which is pre-populated with all of
+            the cards typically found in a standard 52-card deck. If you
+            instead need a deck which can hold
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> objects but is initialized to
+            contain something else or nothing at all, then consider using the
+            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> parent class instead.
+            </remarks>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck.Create52StandardPlayingCards">
+            <summary>
+            Creates and returns the 52 cards found in a standard playing card
+            deck as an enumerable collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all of the cards
+            typically found in a standard playing card deck.
+            </returns>
+        </member>
+        <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit">
+            <summary>
+            Indicates the suit of a standard playing card.
+            </summary>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank"/>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Suit.Clubs">
+            <summary>
+            Indicates that a card's suit is clubs (♣).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Suit.Diamonds">
+            <summary>
+            Indicates that a card's suit is diamonds (♦).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Suit.Hearts">
+            <summary>
+            Indicates that a card's suit is hearts (♥).
+            </summary>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Suit.Spades">
+            <summary>
+            Indicates that a card's suit is spades (♠).
+            </summary>
+        </member>
     </members>
 </doc>
