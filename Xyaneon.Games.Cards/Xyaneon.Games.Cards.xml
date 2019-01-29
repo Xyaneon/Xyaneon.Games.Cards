@@ -10,6 +10,27 @@
             Cannot be directly instantiated.
             </summary>
         </member>
+        <member name="T:Xyaneon.Games.Cards.DefaultShuffleAlgorithm`1">
+            <summary>
+            A default shuffling algorithm for cards.
+            </summary>
+            <typeparam name="TCard">
+            The <see cref="T:System.Type"/> of cards this algorithm will be used to shuffle.
+            </typeparam>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.DefaultShuffleAlgorithm`1.Shuffle(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Shuffles the provided collection of cards and returns them in a new
+            <see cref="T:System.Collections.Generic.IList`1"/> indicating the shuffled order.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle.
+            </param>
+            <returns>
+            A new list containing the supplied <paramref name="cards"/>
+            in shuffled order.
+            </returns>
+        </member>
         <member name="T:Xyaneon.Games.Cards.DrawPile`1">
             <summary>
             A collection of cards which can be drawn from.
@@ -279,6 +300,27 @@
             alternative can be supplied when needed.
             </para>
             </remarks>
+        </member>
+        <member name="T:Xyaneon.Games.Cards.IShuffleAlgorithm`1">
+            <summary>
+            Interface for classes which can be used for shuffling cards.
+            </summary>
+            <typeparam name="TCard">
+            The <see cref="T:System.Type"/> of cards this algorithm will be used to shuffle.
+            </typeparam>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.IShuffleAlgorithm`1.Shuffle(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Shuffles the provided collection of cards and returns them in a new
+            <see cref="T:System.Collections.Generic.IList`1"/> indicating the shuffled order.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle.
+            </param>
+            <returns>
+            A new list containing the supplied <paramref name="cards"/>
+            in shuffled order.
+            </returns>
         </member>
     </members>
 </doc>
