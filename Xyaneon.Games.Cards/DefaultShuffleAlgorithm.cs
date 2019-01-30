@@ -10,7 +10,7 @@ namespace Xyaneon.Games.Cards
     /// <typeparam name="TCard">
     /// The <see cref="Type"/> of cards this algorithm will be used to shuffle.
     /// </typeparam>
-    public class DefaultShuffleAlgorithm<TCard> : IShuffleAlgorithm<TCard> where TCard : Card
+    public sealed class DefaultShuffleAlgorithm<TCard> : IShuffleAlgorithm<TCard> where TCard : Card
     {
         #region IShuffleAlgorithm<TCard> implementation
 

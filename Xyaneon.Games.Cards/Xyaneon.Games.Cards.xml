@@ -201,16 +201,24 @@
             Shuffles all of the cards in this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
             using a default shuffling algorithm.
             </summary>
+            <remarks>
+            This method will use the shuffling algorithm provided by the
+            <see cref="T:Xyaneon.Games.Cards.DefaultShuffleAlgorithm`1"/>. If you want to use
+            a custom shuffling method instead, then consider using the
+            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle(Xyaneon.Games.Cards.IShuffleAlgorithm{`0})"/> overload method.
+            </remarks>
         </member>
-        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle(System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle(Xyaneon.Games.Cards.IShuffleAlgorithm{`0})">
             <summary>
             Shuffles all of the cards in this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
             using the supplied shuffling algorithm.
             </summary>
             <param name="shuffleAlgorithm">
-            The delegate to use which implements the custom shuffling
-            algorithm.
+            The object providing the shuffling algorithm to use.
             </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+            </exception>
         </member>
         <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleIn(System.Collections.Generic.IEnumerable{`0})">
             <summary>
@@ -224,8 +232,15 @@
             <exception cref="T:System.ArgumentNullException">
             <paramref name="cards"/> is <see langword="null"/>.
             </exception>
+            <remarks>
+            This method will use the shuffling algorithm provided by the
+            <see cref="T:Xyaneon.Games.Cards.DefaultShuffleAlgorithm`1"/>. If you want to use
+            a custom shuffling method instead, then consider using the
+            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleIn(System.Collections.Generic.IEnumerable{`0},Xyaneon.Games.Cards.IShuffleAlgorithm{`0})"/>
+            overload method.
+            </remarks>
         </member>
-        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleIn(System.Collections.Generic.IEnumerable{`0},System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleIn(System.Collections.Generic.IEnumerable{`0},Xyaneon.Games.Cards.IShuffleAlgorithm{`0})">
             <summary>
             Shuffles the provided <paramref name="cards"/> into this
             <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> using the supplied shuffling
@@ -236,43 +251,38 @@
             <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
             </param>
             <param name="shuffleAlgorithm">
-            The delegate to use which implements the custom shuffling
-            algorithm.
+            The object providing the shuffling algorithm to use.
             </param>
             <exception cref="T:System.ArgumentNullException">
             <paramref name="cards"/> is <see langword="null"/>.
+            -or-
+            <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:Xyaneon.Games.Cards.DrawPile`1.DefaultShuffleAlgorithm(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Provides the default shuffling algorithm used by this class.
-            </summary>
-            <param name="cards">
-            The collection of cards to shuffle.
-            </param>
-            <returns>
-            A new list containing the supplied <paramref name="cards"/>
-            in shuffled order.
-            </returns>
-        </member>
-        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleBase(System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleBase(Xyaneon.Games.Cards.IShuffleAlgorithm{`0})">
             <summary>
             The base method for shuffling the cards stored in this object.
             The <paramref name="shuffleAlgorithm"/> must always be specified.
             </summary>
             <param name="shuffleAlgorithm">
-            The delegate to use which implements the desired shuffling
-            algorithm.
+            The object providing the shuffling algorithm to use.
             </param>
             <remarks>
+            <para>
+            This method assumes that the <paramref name="shuffleAlgorithm"/>
+            parameter supplied was already checked to not be
+            <see langword="null"/> by the caller.
+            </para>
+            <para>
             The <paramref name="shuffleAlgorithm"/> supplied can just be the
-            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.DefaultShuffleAlgorithm(System.Collections.Generic.IEnumerable{`0})"/> method
-            defined within this class for default behavior, such as when called
-            by the public <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle"/> method. However, an
-            alternative can be supplied when needed.
+            <see cref="T:Xyaneon.Games.Cards.DefaultShuffleAlgorithm`1"/> class defined in this
+            library for default behavior, such as when called by the public
+            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle"/> method. However, an alternative can be
+            supplied when needed.
+            </para>
             </remarks>
         </member>
-        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleInBase(System.Collections.Generic.IEnumerable{`0},System.Func{System.Collections.Generic.IEnumerable{`0},System.Collections.Generic.IList{`0}})">
+        <member name="M:Xyaneon.Games.Cards.DrawPile`1.ShuffleInBase(System.Collections.Generic.IEnumerable{`0},Xyaneon.Games.Cards.IShuffleAlgorithm{`0})">
             <summary>
             The base method for shuffling the supplied <paramref name="cards"/>
             into this <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>. The
@@ -283,21 +293,19 @@
             <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/>.
             </param>
             <param name="shuffleAlgorithm">
-            The delegate to use which implements the desired shuffling
-            algorithm.
+            The object providing the shuffling algorithm to use.
             </param>
             <remarks>
             <para>
-            This method assumes that the <paramref name="cards"/> parameter
-            supplied was already checked to not be <see langword="null"/> by
-            the caller.
+            This method assumes that the parameters supplied were already
+            checked to not be <see langword="null"/> by the caller.
             </para>
             <para>
             The <paramref name="shuffleAlgorithm"/> supplied can just be the
-            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.DefaultShuffleAlgorithm(System.Collections.Generic.IEnumerable{`0})"/> method
-            defined within this class for default behavior, such as when called
-            by the public <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle"/> method. However, an
-            alternative can be supplied when needed.
+            <see cref="T:Xyaneon.Games.Cards.DefaultShuffleAlgorithm`1"/> class defined in this
+            library for default behavior, such as when called by the public
+            <see cref="M:Xyaneon.Games.Cards.DrawPile`1.Shuffle"/> method. However, an alternative can be
+            supplied when needed.
             </para>
             </remarks>
         </member>
