@@ -309,6 +309,27 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Xyaneon.Games.Cards.IShuffleAlgorithm`1">
+            <summary>
+            Interface for classes which can be used for shuffling cards.
+            </summary>
+            <typeparam name="TCard">
+            The <see cref="T:System.Type"/> of cards this algorithm will be used to shuffle.
+            </typeparam>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.IShuffleAlgorithm`1.Shuffle(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Shuffles the provided collection of cards and returns them in a new
+            <see cref="T:System.Collections.Generic.IList`1"/> indicating the shuffled order.
+            </summary>
+            <param name="cards">
+            The collection of cards to shuffle.
+            </param>
+            <returns>
+            A new list containing the supplied <paramref name="cards"/>
+            in shuffled order.
+            </returns>
+        </member>
         <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.Joker">
             <summary>
             A joker card from a standard 52-card deck.
@@ -525,26 +546,6 @@
             <summary>
             Indicates that a card's suit is spades (♠).
             </summary>
-        <member name="T:Xyaneon.Games.Cards.IShuffleAlgorithm`1">
-            <summary>
-            Interface for classes which can be used for shuffling cards.
-            </summary>
-            <typeparam name="TCard">
-            The <see cref="T:System.Type"/> of cards this algorithm will be used to shuffle.
-            </typeparam>
-        </member>
-        <member name="M:Xyaneon.Games.Cards.IShuffleAlgorithm`1.Shuffle(System.Collections.Generic.IEnumerable{`0})">
-            <summary>
-            Shuffles the provided collection of cards and returns them in a new
-            <see cref="T:System.Collections.Generic.IList`1"/> indicating the shuffled order.
-            </summary>
-            <param name="cards">
-            The collection of cards to shuffle.
-            </param>
-            <returns>
-            A new list containing the supplied <paramref name="cards"/>
-            in shuffled order.
-            </returns>
         </member>
     </members>
 </doc>
