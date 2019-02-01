@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
 using Xyaneon.Games.Cards.StandardPlayingCards;
 
 namespace Xyaneon.Games.Cards.Test
@@ -37,6 +39,32 @@ namespace Xyaneon.Games.Cards.Test
             {
                 Assert.IsFalse(deck.IsEmpty);
                 Assert.AreEqual(52, deck.Cards.Count);
+            }
+        }
+
+        /// <summary>
+        /// Tests initialization of the <see cref="StandardPlayingCardDeck"/>
+        /// class with jokers.
+        /// </summary>
+        [TestMethod]
+        [Timeout(1000)]
+        public void StandardPlayingCardDeck_JokersInitializationTest()
+        {
+            // Arrange.
+            const int testUpTo = 3;
+            var decks = new List<StandardPlayingCardDeck>(testUpTo);
+
+            // Act.
+            for (int i = 0; i < testUpTo; i++)
+            {
+                decks.Add(new StandardPlayingCardDeck(numberOfJokers: i));
+            }
+
+            // Assert.
+            for (int i = 0; i < testUpTo; i++)
+            {
+                Assert.AreEqual(52 + i, decks[i].Cards.Count);
+                Assert.AreEqual(i, decks[i].Cards.OfType<Joker>().Count());
             }
         }
     }

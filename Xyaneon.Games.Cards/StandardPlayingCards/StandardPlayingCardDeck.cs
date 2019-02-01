@@ -87,6 +87,7 @@ namespace Xyaneon.Games.Cards.StandardPlayingCards
             int i = 0;
             while (i < numberOfJokers)
             {
+                i++;
                 yield return new Joker();
             }
         }
