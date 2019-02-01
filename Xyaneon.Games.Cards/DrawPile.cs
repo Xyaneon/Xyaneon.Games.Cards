@@ -284,9 +284,15 @@ namespace Xyaneon.Games.Cards
         /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
         /// using a default shuffling algorithm.
         /// </summary>
+        /// <remarks>
+        /// This method will use the shuffling algorithm provided by the
+        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
+        /// a custom shuffling method instead, then consider using the
+        /// <see cref="Shuffle(IShuffleAlgorithm{TCard})"/> overload method.
+        /// </remarks>
         public void Shuffle()
         {
-            ShuffleBase(DefaultShuffleAlgorithm);
+            ShuffleBase(new DefaultShuffleAlgorithm<TCard>());
         }
 
         /// <summary>
@@ -294,11 +300,18 @@ namespace Xyaneon.Games.Cards
         /// using the supplied shuffling algorithm.
         /// </summary>
         /// <param name="shuffleAlgorithm">
-        /// The delegate to use which implements the custom shuffling
-        /// algorithm.
+        /// The object providing the shuffling algorithm to use.
         /// </param>
-        public void Shuffle(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        public void Shuffle(IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
             ShuffleBase(shuffleAlgorithm);
         }
 
@@ -313,6 +326,13 @@ namespace Xyaneon.Games.Cards
         /// <exception cref="ArgumentNullException">
         /// <paramref name="cards"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This method will use the shuffling algorithm provided by the
+        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
+        /// a custom shuffling method instead, then consider using the
+        /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
+        /// overload method.
+        /// </remarks>
         public void ShuffleIn(IEnumerable<TCard> cards)
         {
             if (cards == null)
@@ -320,7 +340,7 @@ namespace Xyaneon.Games.Cards
                 throw new ArgumentNullException(nameof(cards), "The collection of cards to shuffle into this draw pile cannot be null.");
             }
 
-            ShuffleInBase(cards, DefaultShuffleAlgorithm);
+            ShuffleInBase(cards, new DefaultShuffleAlgorithm<TCard>());
         }
 
         /// <summary>
@@ -333,17 +353,23 @@ namespace Xyaneon.Games.Cards
         /// <see cref="DrawPile{TCard}"/>.
         /// </param>
         /// <param name="shuffleAlgorithm">
-        /// The delegate to use which implements the custom shuffling
-        /// algorithm.
+        /// The object providing the shuffling algorithm to use.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="cards"/> is <see langword="null"/>.
+        /// -or-
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
-        public void ShuffleIn(IEnumerable<TCard> cards, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        public void ShuffleIn(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (cards == null)
             {
                 throw new ArgumentNullException(nameof(cards), "The collection of cards to shuffle into this draw pile cannot be null.");
+            }
+
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
             }
 
             ShuffleInBase(cards, shuffleAlgorithm);
@@ -354,39 +380,29 @@ namespace Xyaneon.Games.Cards
         #region Private methods
 
         /// <summary>
-        /// Provides the default shuffling algorithm used by this class.
-        /// </summary>
-        /// <param name="cards">
-        /// The collection of cards to shuffle.
-        /// </param>
-        /// <returns>
-        /// A new list containing the supplied <paramref name="cards"/>
-        /// in shuffled order.
-        /// </returns>
-        private static IList<TCard> DefaultShuffleAlgorithm(IEnumerable<TCard> cards)
-        {
-            var random = new Random();
-            return cards.OrderBy(c => random.Next()).ToList();
-        }
-
-        /// <summary>
         /// The base method for shuffling the cards stored in this object.
         /// The <paramref name="shuffleAlgorithm"/> must always be specified.
         /// </summary>
         /// <param name="shuffleAlgorithm">
-        /// The delegate to use which implements the desired shuffling
-        /// algorithm.
+        /// The object providing the shuffling algorithm to use.
         /// </param>
         /// <remarks>
+        /// <para>
+        /// This method assumes that the <paramref name="shuffleAlgorithm"/>
+        /// parameter supplied was already checked to not be
+        /// <see langword="null"/> by the caller.
+        /// </para>
+        /// <para>
         /// The <paramref name="shuffleAlgorithm"/> supplied can just be the
-        /// <see cref="DefaultShuffleAlgorithm(IEnumerable{TCard})"/> method
-        /// defined within this class for default behavior, such as when called
-        /// by the public <see cref="Shuffle()"/> method. However, an
-        /// alternative can be supplied when needed.
+        /// <see cref="DefaultShuffleAlgorithm{TCard}"/> class defined in this
+        /// library for default behavior, such as when called by the public
+        /// <see cref="Shuffle()"/> method. However, an alternative can be
+        /// supplied when needed.
+        /// </para>
         /// </remarks>
-        private void ShuffleBase(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        private void ShuffleBase(IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
-            IList<TCard> shuffledCards = shuffleAlgorithm(_cards);
+            IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(_cards);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
@@ -400,27 +416,25 @@ namespace Xyaneon.Games.Cards
         /// <see cref="DrawPile{TCard}"/>.
         /// </param>
         /// <param name="shuffleAlgorithm">
-        /// The delegate to use which implements the desired shuffling
-        /// algorithm.
+        /// The object providing the shuffling algorithm to use.
         /// </param>
         /// <remarks>
         /// <para>
-        /// This method assumes that the <paramref name="cards"/> parameter
-        /// supplied was already checked to not be <see langword="null"/> by
-        /// the caller.
+        /// This method assumes that the parameters supplied were already
+        /// checked to not be <see langword="null"/> by the caller.
         /// </para>
         /// <para>
         /// The <paramref name="shuffleAlgorithm"/> supplied can just be the
-        /// <see cref="DefaultShuffleAlgorithm(IEnumerable{TCard})"/> method
-        /// defined within this class for default behavior, such as when called
-        /// by the public <see cref="Shuffle()"/> method. However, an
-        /// alternative can be supplied when needed.
+        /// <see cref="DefaultShuffleAlgorithm{TCard}"/> class defined in this
+        /// library for default behavior, such as when called by the public
+        /// <see cref="Shuffle()"/> method. However, an alternative can be
+        /// supplied when needed.
         /// </para>
         /// </remarks>
-        private void ShuffleInBase(IEnumerable<TCard> cards, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        private void ShuffleInBase(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
-            IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
+            IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(cardsToShuffle);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
