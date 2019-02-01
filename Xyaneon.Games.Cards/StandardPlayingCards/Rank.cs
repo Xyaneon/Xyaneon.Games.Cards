@@ -7,9 +7,13 @@
     public enum Rank
     {
         /// <summary>
+        /// Indicates that a card has no rank (such as a joker).
+        /// </summary>
+        None,
+        /// <summary>
         /// Indicates that the card is an ace (A).
         /// </summary>
-        Ace = 1,
+        Ace,
         /// <summary>
         /// Indicates that the card is a two (2).
         /// </summary>

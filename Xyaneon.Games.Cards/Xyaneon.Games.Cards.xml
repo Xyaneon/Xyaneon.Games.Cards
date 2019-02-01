@@ -280,11 +280,38 @@
             </para>
             </remarks>
         </member>
+        <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.Joker">
+            <summary>
+            A joker card from a standard 52-card deck.
+            </summary>
+            <remarks>
+            <para>
+            In this implementation, the joker is considered to have no suit and no
+            rank.
+            </para>
+            <para>
+            More information about the joker can be found here:
+            https://en.wikipedia.org/wiki/Joker_(playing_card)
+            </para>
+            </remarks>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>
+            <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.Joker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Joker"/> class.
+            </summary>
+        </member>
         <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank">
             <summary>
             Indicates the rank of a standard playing card.
             </summary>
             <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.None">
+            <summary>
+            Indicates that a card has no rank (such as a joker).
+            </summary>
         </member>
         <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Rank.Ace">
             <summary>
@@ -393,41 +420,62 @@
             <seealso cref="T:Xyaneon.Games.Cards.DrawPile`1"/>
             <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>
         </member>
-        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck.#ctor(System.Boolean)">
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck.#ctor(System.Boolean,System.Int32)">
             <summary>
             Initializes a new instance of the
             <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/> class, containing all 52
-            standard playing cards.
+            standard playing cards and the specified number of jokers.
             </summary>
             <param name="isFaceUp">
             A value indicating whether this
             <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/> is supposed to be face-up
             (<see langword="true"/>) or face-down (<see langword="false"/>).
             </param>
+            <param name="numberOfJokers">
+            The number of <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Joker"/> cards this
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck"/> should also contain. This
+            parameter is zero by default.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="numberOfJokers"/> is less than zero.
+            </exception>
             <remarks>
             This constructor creates a deck which is pre-populated with all of
-            the cards typically found in a standard 52-card deck. If you
-            instead need a deck which can hold
-            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> objects but is initialized to
-            contain something else or nothing at all, then consider using the
-            <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> parent class instead.
+            the cards typically found in a standard 52-card deck, plus any
+            specified <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Joker"/> cards. If you instead need a deck
+            which can hold <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> objects but is
+            initialized to contain something else or nothing at all, then
+            consider using the <see cref="T:Xyaneon.Games.Cards.DrawPile`1"/> base class
+            instead.
             </remarks>
         </member>
-        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck.Create52StandardPlayingCards">
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck.Create52StandardPlayingCards(System.Int32)">
             <summary>
             Creates and returns the 52 cards found in a standard playing card
             deck as an enumerable collection.
             </summary>
+            <param name="numberOfJokers">
+            The number of <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Joker"/> cards the enumerable collection
+            should also contain. This parameter is zero by default.
+            </param>
             <returns>
             An <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all of the cards
             typically found in a standard playing card deck.
             </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="numberOfJokers"/> is less than zero.
+            </exception>
         </member>
         <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit">
             <summary>
             Indicates the suit of a standard playing card.
             </summary>
             <seealso cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank"/>
+        </member>
+        <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Suit.None">
+            <summary>
+            Indicates that a card has no suit (such as a joker).
+            </summary>
         </member>
         <member name="F:Xyaneon.Games.Cards.StandardPlayingCards.Suit.Clubs">
             <summary>

@@ -7,6 +7,10 @@
     public enum Suit
     {
         /// <summary>
+        /// Indicates that a card has no suit (such as a joker).
+        /// </summary>
+        None,
+        /// <summary>
         /// Indicates that a card's suit is clubs (♣).
         /// </summary>
         Clubs,
