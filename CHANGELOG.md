@@ -5,5 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.1.0] - 2019-02-01
 ### Added
 - Initial release.
+
+[Unreleased]: https://github.com/Xyaneon/Xyaneon.ComputerScience.GraphTheory/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/c6d59cf66aa7b320596e754b673f370e88472474...v0.1.0

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyaneon.Games.Cards", "Xyaneon.Games.Cards\Xyaneon.Games.Cards.csproj", "{4A4086C7-E0E0-400F-B929-1C42A0F4EC0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xyaneon.Games.Cards", "Xyaneon.Games.Cards\Xyaneon.Games.Cards.csproj", "{4A4086C7-E0E0-400F-B929-1C42A0F4EC0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xyaneon.Games.Cards.Test", "Xyaneon.Games.Cards.Test\Xyaneon.Games.Cards.Test.csproj", "{CA0AB991-4CA2-4152-B99B-FC6C9A3AF972}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xyaneon.Games.Cards.Test", "Xyaneon.Games.Cards.Test\Xyaneon.Games.Cards.Test.csproj", "{CA0AB991-4CA2-4152-B99B-FC6C9A3AF972}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FEB18D98-6E07-4C54-AD58-0B3E19BD4C5F}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
