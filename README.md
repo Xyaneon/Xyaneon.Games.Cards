@@ -11,5 +11,5 @@ A .NET Standard library for playing cards (standard and custom), draw piles and 
 
 This library is free and open-source software provided under the MIT license. Please see the [LICENSE.txt][license] file for details.
 
-[icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/Xyaneon.Games.Cards.png
+[icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/icon.png
 [license]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/LICENSE.txt
