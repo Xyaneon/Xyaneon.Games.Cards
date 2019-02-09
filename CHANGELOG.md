@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added `DrawPile<TCard>.ShuffleIn` method overloads which accept another
   `DrawPile<TCard>` as a parameter.
+- Added continuous deployment (CD) using Travis CI.
+- Added basic usage instructions in the README.md file.
+- Added a couple more unit test methods.
 
 ### Fixed
 - Fixed the icon URL for the NuGet package.
@@ -20,6 +23,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/Xyaneon/Xyaneon.ComputerScience.GraphTheory/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Xyaneon/Xyaneon.ComputerScience.GraphTheory/compare/v0.1.1...HEAD
 [0.1.1]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/c6d59cf66aa7b320596e754b673f370e88472474...v0.1.0
