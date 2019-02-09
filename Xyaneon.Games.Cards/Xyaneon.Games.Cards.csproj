@@ -15,7 +15,6 @@
     <FileVersion>0.1.0.0</FileVersion>
     <PackageTags>standard custom playing cards card games deck draw pile shuffle</PackageTags>
     <Version>0.1.1</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>
