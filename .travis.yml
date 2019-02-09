@@ -3,5 +3,13 @@ mono: none
 dotnet: 2.1.503
 solution: Xyaneon.Games.Cards.sln
 script:
-  - dotnet restore
-  - dotnet test
+  - dotnet build -c Release
+  - dotnet test -c Release
+  - dotnet pack -c Release --no-build --include-symbols
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: dotnet nuget push Xyaneon.Games.Cards/bin/Release/Xyaneon.Games.Cards.*.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+  on:
+    tags: true
+    condition: $TRAVIS_TAG =~ ^v(\d+\.)?(\d+\.)?(\*|\d+)$
