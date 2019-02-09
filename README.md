@@ -49,6 +49,44 @@ in the constructor using the `isFaceUp` optional parameter:
 var myDrawPile = new DrawPile<MyCard>(true);
 ```
 
+After the draw pile is created, you can do several things with it, including:
+
+```csharp
+// Count the number of cards in the draw pile.
+int cardCount = myDrawPile.Cards.Count;
+
+// Draw a card. An InvalidOperationException will be thrown if the pile is
+// empty.
+MyCard drawnCard = myDrawPile.Draw();
+
+// Draw three cards (or at least as many as we can if there are fewer).
+IEnumerable<MyCard> drawnCards = myDrawPile.DrawAtMost(3);
+
+// Place a card on top of the draw pile.
+var cardToPlaceOnTop = new MyCard();
+drawPile.PlaceOnTop(cardToPlaceOnTop);
+
+// Shuffle the draw pile using the default shuffling algorithm.
+myDrawPile.Shuffle();
+
+// Shuffle the draw pile using a custom shuffling algorithm you implemented.
+IShuffleAlgorithm<MyCard> algorithm = new MyShuffleAlgorithm();
+myDrawPile.Shuffle(algorithm);
+
+// Shuffle one draw pile into another.
+DrawPile<MyCard> other = myObject.YourMethodToGetAnotherDrawPile();
+myDrawPile.ShuffleIn(other); // other is now empty, with its contents added to myDrawPile.
+```
+
+For a full list of the available properties and methods, see the source code
+for the [`DrawPile<TCard>`][DrawPile class] class.
+
+For an example usage of these classes, see the standard 52-card implementation
+provided with this library under the
+[Xyaneon.Games.Cards.StandardPlayingCards][StandardPlayingCards] namespace.
+This is also provided for your convenience if you want to implement a card game
+which uses the standard 52-card deck.
+
 ## License
 
 This library is free and open-source software provided under the MIT license.
@@ -59,4 +97,5 @@ Please see the [LICENSE.txt][license] file for details.
 [icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/icon.png
 [license]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/LICENSE.txt
 [NuGet package]: https://www.nuget.org/packages/Xyaneon.Games.Cards/
+[StandardPlayingCards]: https://github.com/Xyaneon/Xyaneon.Games.Cards/tree/master/Xyaneon.Games.Cards/StandardPlayingCards
 [Travis CI]: https://travis-ci.com/Xyaneon/Xyaneon.Games.Cards
