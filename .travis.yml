@@ -3,5 +3,6 @@ mono: none
 dotnet: 2.1.503
 solution: Xyaneon.Games.Cards.sln
 script:
-  - dotnet restore
-  - dotnet test
+  - dotnet build -c Release
+  - dotnet test -c Release
+  - dotnet pack -c Release --no-build --include-symbols
