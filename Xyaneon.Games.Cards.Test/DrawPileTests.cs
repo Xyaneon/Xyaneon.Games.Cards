@@ -60,5 +60,29 @@ namespace Xyaneon.Games.Cards.Test
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
             Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
         }
+
+        /// <summary>
+        /// Tests the <see cref="DrawPile{TCard}.DrawAll"/> method.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_DrawAllTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var expectedCardSet = new HashSet<IntCard>(cards);
+            HashSet<IntCard> actualCardSet;
+            var drawPile = new DrawPile<IntCard>(cards);
+            IEnumerable<IntCard> drawnCards;
+
+            // Act.
+            actualCardSet = new HashSet<IntCard>(drawPile.Cards);
+            drawnCards = drawPile.DrawAll();
+
+            // Assert.
+            Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
+            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+            Assert.IsTrue(expectedCardSet.SetEquals(new HashSet<IntCard>(drawnCards)));
+            Assert.AreEqual(0, drawPile.Cards.Count);
+        }
     }
 }
