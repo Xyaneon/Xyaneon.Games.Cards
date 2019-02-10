@@ -11,23 +11,21 @@
     <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Xyaneon/Xyaneon.Games.Cards/master/Xyaneon.Games.Cards/icon.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>0.2.0.0</AssemblyVersion>
-    <FileVersion>0.2.0.0</FileVersion>
+    <AssemblyVersion>0.3.0.0</AssemblyVersion>
+    <FileVersion>0.3.0.0</FileVersion>
     <PackageTags>standard custom playing cards card games deck draw pile shuffle</PackageTags>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>
-      ## 0.2.0 - 2019-02-09
+      ## 0.3.0 - 2019-02-10
       ### Added
-      - Added DrawPile&lt;TCard&gt;.ShuffleIn method overloads which accept another
-        DrawPile&lt;TCard&gt; as a parameter.
-      - Added continuous deployment (CD) using Travis CI.
-      - Added basic usage instructions in the README.md file.
-      - Added a couple more unit test methods.
+      - Added the IDrawPile&lt;TCard&gt; interface.
 
-      ### Fixed
-      - Fixed the icon URL for the NuGet package.
+      ### Changed
+      - Changed deployment tag regex.
+      - The DrawPile&lt;TCard&gt; class now implements the new IDrawPile&lt;TCard&gt;
+        interface.
     </PackageReleaseNotes>
   </PropertyGroup>
 
