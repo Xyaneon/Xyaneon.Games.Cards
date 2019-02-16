@@ -785,6 +785,23 @@
             The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/> of the card.
             </param>
         </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.Equals(Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard)">
+            <summary>
+            Indicates whether the current <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>
+            is equal to another <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>.
+            </summary>
+            <param name="other">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> to compare with this
+            object.
+            </param>
+            <returns>
+            <see langword="true"/> if the other
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> is equal to this
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>; otherwise,
+            <see langword="false"/>.
+            </returns>
+            <seealso cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="P:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.Rank">
             <summary>
             Gets the <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Rank"/> of this card.
@@ -794,6 +811,65 @@
             <summary>
             Gets the <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.Suit"/> of this card.
             </summary>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to
+            this <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>.
+            </summary>
+            <param name="obj">
+            The object to compare to the current
+            <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>.
+            </param>
+            <returns>
+            <see langword="true"/> if the specified object is equal to
+            this <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>; otherwise,
+            <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.GetHashCode">
+            <summary>
+            Gets a hash code for this <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>.
+            </summary>
+            <returns>
+            A a hash code for the current <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>.
+            </returns>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.op_Equality(Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard,Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard)">
+            <summary>
+            Determines whether two <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>
+            instances are equal to each other.
+            </summary>
+            <param name="card1">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> on the left hand of the
+            expression.
+            </param>
+            <param name="card2">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> on the right hand of the
+            expression.
+            </param>
+            <returns>
+            <see langword="true"/> if <paramref name="card1"/> is equal to
+            <paramref name="card2"/>; otherwise, <see langword="false"/>.
+            </returns>
+        </member>
+        <member name="M:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard.op_Inequality(Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard,Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard)">
+            <summary>
+            Determines whether two <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/>
+            instances are not equal to each other.
+            </summary>
+            <param name="card1">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> on the left hand of the
+            expression.
+            </param>
+            <param name="card2">
+            The <see cref="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCard"/> on the right hand of the
+            expression.
+            </param>
+            <returns>
+            <see langword="true"/> if <paramref name="card1"/> is not equal to
+            <paramref name="card2"/>; otherwise, <see langword="false"/>.
+            </returns>
         </member>
         <member name="T:Xyaneon.Games.Cards.StandardPlayingCards.StandardPlayingCardDeck">
             <summary>
