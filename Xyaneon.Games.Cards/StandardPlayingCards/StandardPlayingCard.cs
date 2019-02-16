@@ -186,7 +186,7 @@ namespace Xyaneon.Games.Cards.StandardPlayingCards
                 return true;
             }
 
-            return card1.Equals(card2);
+            return !card1.Equals(card2);
         }
 
         #endregion // End operators region.
