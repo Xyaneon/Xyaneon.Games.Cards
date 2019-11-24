@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The `StandardPlayingCard` class now implements the
   `IEquatable<StandardPlayingCard>` interface.
 
+### Fixed
+- Fixed the `DrawPile<TCard>.PlaceAtBottom` method placing cards on top (thanks to
+  [Clayton Wahlstrom](https://github.com/claywahlstrom) for finding this!)
+  ([issue #14](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/14)).
+
 ## [0.3.0] - 2019-02-10
 ### Added
 - Added the `IDrawPile<TCard>` interface.
