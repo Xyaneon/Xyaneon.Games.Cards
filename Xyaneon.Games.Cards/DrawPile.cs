@@ -252,8 +252,7 @@ namespace Xyaneon.Games.Cards
             {
                 throw new ArgumentNullException(nameof(card), "The card to place at the bottom of the draw pile cannot be null.");
             }
-
-            _cards = new Stack<TCard>(_cards.Concat(new TCard[] { card }));
+            _cards = new Stack<TCard>(new TCard[] { card }.Concat(_cards.Reverse()));
         }
 
         /// <summary>
