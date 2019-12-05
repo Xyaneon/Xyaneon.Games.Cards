@@ -11,21 +11,22 @@
     <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/Xyaneon/Xyaneon.Games.Cards/master/Xyaneon.Games.Cards/icon.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>0.3.0.0</AssemblyVersion>
-    <FileVersion>0.3.0.0</FileVersion>
+    <AssemblyVersion>0.4.0.0</AssemblyVersion>
+    <FileVersion>0.4.0.0</FileVersion>
     <PackageTags>standard custom playing cards card games deck draw pile shuffle</PackageTags>
-    <Version>0.3.0</Version>
+    <Version>0.4.0</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>
-      ## 0.3.0 - 2019-02-10
+      ## 0.4.0 - 2019-12-04
       ### Added
-      - Added the IDrawPile&lt;TCard&gt; interface.
+      - The StandardPlayingCard class now implements the
+        IEquatable&lt;StandardPlayingCard&gt; interface.
 
-      ### Changed
-      - Changed deployment tag regex.
-      - The DrawPile&lt;TCard&gt; class now implements the new IDrawPile&lt;TCard&gt;
-        interface.
+      ### Fixed
+      - Fixed the DrawPile&lt;TCard&gt;.PlaceAtBottom method placing cards on top (thanks to
+        [Clayton Wahlstrom](https://github.com/claywahlstrom) for finding this!)
+        ([issue #14](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/14)).
     </PackageReleaseNotes>
   </PropertyGroup>
 
