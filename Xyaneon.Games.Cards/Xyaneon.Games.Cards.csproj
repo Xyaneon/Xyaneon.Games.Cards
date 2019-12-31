@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
     <PackageIcon>icon.png</PackageIcon>
-    <PackageIconUrl>https://raw.githubusercontent.com/Xyaneon/Xyaneon.Games.Cards/master/Xyaneon.Games.Cards/icon.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/Xyaneon/Xyaneon.Games.Cards/master/Xyaneon.Games.Cards/images/icon.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
     <FileVersion>0.4.0.0</FileVersion>
@@ -40,7 +40,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath="\"/>
+    <None Include="images\icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
