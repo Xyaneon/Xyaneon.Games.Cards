@@ -1,6 +1,6 @@
 language: csharp
 mono: none
-dist: xenial
+dist: bionic
 dotnet: 2.2.103
 solution: Xyaneon.Games.Cards.sln
 script:
