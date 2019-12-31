@@ -9,7 +9,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/Xyaneon/Xyaneon.Games.Cards/master/Xyaneon.Games.Cards/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/Xyaneon/Xyaneon.Games.Cards/master/Xyaneon.Games.Cards/images/icon.png</PackageIconUrl>
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
     <FileVersion>0.4.0.0</FileVersion>
@@ -37,5 +38,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>C:\Users\chris\source\repos\Xyaneon\Xyaneon.Games.Cards\Xyaneon.Games.Cards\Xyaneon.Games.Cards.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="images\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>

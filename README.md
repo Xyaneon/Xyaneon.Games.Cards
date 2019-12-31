@@ -94,7 +94,7 @@ Please see the [LICENSE.txt][license] file for details.
 
 [Card class]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/Card.cs
 [DrawPile class]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/DrawPile.cs
-[icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/icon.png
+[icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/images/icon.png
 [license]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/LICENSE.txt
 [NuGet package]: https://www.nuget.org/packages/Xyaneon.Games.Cards/
 [StandardPlayingCards]: https://github.com/Xyaneon/Xyaneon.Games.Cards/tree/master/Xyaneon.Games.Cards/StandardPlayingCards
