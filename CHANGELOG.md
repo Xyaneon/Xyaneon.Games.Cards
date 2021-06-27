@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Added GitHub Actions pull request checks to replace Travis CI.
+
+### Changed
+- Switched target from .NET Standard to .NET 5.0.
 
 ## [0.4.0] - 2019-12-04
 ### Added
