@@ -7,7 +7,7 @@
 
 ![Package Icon][icon]
 
-A .NET Standard library for playing cards (standard and custom), draw piles
+A .NET 5.0 library for playing cards (standard and custom), draw piles
 and shuffling.
 
 ## Usage
