@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
     <Authors>Christopher Kyle Horton</Authors>
     <Company>Christopher Kyle Horton</Company>
     <Description>A .NET Standard library for playing cards (standard and custom), draw piles and shuffling.</Description>
