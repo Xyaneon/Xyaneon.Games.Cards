@@ -3,10 +3,11 @@
 [![License](https://img.shields.io/github/license/Xyaneon/Xyaneon.Games.Cards)][License]
 [![NuGet](https://img.shields.io/nuget/v/Xyaneon.Games.Cards.svg?style=flat)][NuGet package]
 [![Build Status](https://travis-ci.com/Xyaneon/Xyaneon.Games.Cards.svg?branch=master)][Travis CI]
+[![.NET](https://github.com/Xyaneon/Xyaneon.Games.Cards/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Xyaneon/Xyaneon.Games.Cards/actions/workflows/dotnet.yml)
 
 ![Package Icon][icon]
 
-A .NET Standard library for playing cards (standard and custom), draw piles
+A .NET 5.0 library for playing cards (standard and custom), draw piles
 and shuffling.
 
 ## Usage
