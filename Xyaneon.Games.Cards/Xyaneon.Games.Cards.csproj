@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Authors>Christopher Kyle Horton</Authors>
     <Company>Christopher Kyle Horton</Company>
-    <Description>A .NET Standard library for playing cards (standard and custom), draw piles and shuffling.</Description>
-    <Copyright>Copyright © Christopher Kyle Horton 2019</Copyright>
+    <Description>A library for playing cards (standard and custom), draw piles and shuffling.</Description>
+    <Copyright>Copyright © Christopher Kyle Horton 2019-2022</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
