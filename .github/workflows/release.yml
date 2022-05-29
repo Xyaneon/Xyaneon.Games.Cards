@@ -34,6 +34,9 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     
+    - name: Package
+      run: dotnet pack -c Release --no-build --include-symbols
+    
     - name: Semantic Release
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
