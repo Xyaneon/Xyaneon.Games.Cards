@@ -43,4 +43,4 @@ jobs:
       run: dotnet build -c Release --no-restore -p:Version=${{ env.RELEASE_VERSION }}
     
     - name: Package
-      run: dotnet pack -c Release --no-build --include-symbols -p:Version=${{ env.RELEASE_VERSION }} -o .
+      run: dotnet pack -c Release --no-build --include-symbols -p:Version=${{ env.RELEASE_VERSION }} -o dist/
