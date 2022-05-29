@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Added GitHub Actions pull request checks to replace Travis CI.
+- Added automatic dependency updating via Dependabot.
 
 ### Changed
-- Switched target from .NET Standard to .NET 5.0.
+- Switched target from .NET Standard to .NET 6.0.
+- .csproj package file cleanup.
+- Updated test dependencies.
 
 ## [0.4.0] - 2019-12-04
 ### Added
