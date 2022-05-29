@@ -93,10 +93,10 @@ which uses the standard 52-card deck.
 This library is free and open-source software provided under the MIT license.
 Please see the [LICENSE.txt][License] file for details.
 
-[Card class]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/Card.cs
-[DrawPile class]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/DrawPile.cs
-[icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/Xyaneon.Games.Cards/images/icon.png
-[License]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/master/LICENSE.txt
+[Card class]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/main/Xyaneon.Games.Cards/Card.cs
+[DrawPile class]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/main/Xyaneon.Games.Cards/DrawPile.cs
+[icon]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/main/Xyaneon.Games.Cards/images/icon.png
+[License]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/main/LICENSE.txt
 [NuGet package]: https://www.nuget.org/packages/Xyaneon.Games.Cards/
-[StandardPlayingCards]: https://github.com/Xyaneon/Xyaneon.Games.Cards/tree/master/Xyaneon.Games.Cards/StandardPlayingCards
+[StandardPlayingCards]: https://github.com/Xyaneon/Xyaneon.Games.Cards/tree/main/Xyaneon.Games.Cards/StandardPlayingCards
 [Travis CI]: https://travis-ci.com/Xyaneon/Xyaneon.Games.Cards
