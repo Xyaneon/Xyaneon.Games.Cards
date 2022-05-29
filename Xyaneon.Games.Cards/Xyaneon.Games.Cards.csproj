@@ -10,6 +10,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>0.4.0.0</AssemblyVersion>
@@ -18,17 +19,7 @@
     <Version>0.4.0</Version>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>
-      ## 0.4.0 - 2019-12-04
-      ### Added
-      - The StandardPlayingCard class now implements the
-        IEquatable&lt;StandardPlayingCard&gt; interface.
-
-      ### Fixed
-      - Fixed the DrawPile&lt;TCard&gt;.PlaceAtBottom method placing cards on top (thanks to
-        [Clayton Wahlstrom](https://github.com/claywahlstrom) for finding this!)
-        ([issue #14](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/14)).
-    </PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/Xyaneon/Xyaneon.Games.Cards/releases</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -37,6 +28,10 @@
 
   <ItemGroup>
     <None Include="images\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
