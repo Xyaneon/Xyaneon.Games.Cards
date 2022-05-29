@@ -34,7 +34,7 @@ jobs:
     - name: Test
       run: dotnet test -c Release --no-build --verbosity normal
     
-    - name: Semantic Release
+    - name: Semantic Release dry run to get new Semantic Version
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
       run: npx semantic-release --dry-run
@@ -44,3 +44,11 @@ jobs:
     
     - name: Package
       run: dotnet pack -c Release --no-build --include-symbols -p:Version=${{ env.RELEASE_VERSION }} -o dist/
+    
+    - name: Semantic Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+      run: npx semantic-release
+    
+    - name: Publish package on NuGet
+      run: dotnet nuget push dist/*.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
