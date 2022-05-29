@@ -20,6 +20,14 @@
             {
                 "verifyReleaseCmd": "echo RELEASE_VERSION=${nextRelease.version} >> $GITHUB_ENV"
             }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "CHANGELOG.md"
+                ]
+            }
         ]
     ]
 }
