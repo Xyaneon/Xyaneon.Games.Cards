@@ -18,12 +18,6 @@
 
 * Revert "Specify Xenial instead of Bionic in Travis." (#18) ([ba6c47b](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/ba6c47ba011c9178400ea4156be27723743e817a)), closes [#18](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/18)
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
 ### Added
 - Added GitHub Actions pull request checks to replace Travis CI.
 - Added automatic dependency updating via Dependabot.
@@ -71,7 +65,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release.
 
-[Unreleased]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.4.0...HEAD
 [0.4.0]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.1.1...v0.2.0
