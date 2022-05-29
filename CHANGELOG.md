@@ -1,4 +1,23 @@
 # Changelog
+
+# [1.0.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.4.0...v1.0.0) (2022-05-29)
+
+
+### Bug Fixes
+
+* Remove deprecated PackageIconUrl property ([61e7408](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/61e74087934b748f145a41b4147978a415be74db))
+* Replace absolute path for XML docs ([baaeb51](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/baaeb517217a39cd38324724680a49981fcc7e6f))
+
+
+### Features
+
+* Add GitHub Actions to Dependabot updates ([c176dac](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/c176dac7a1c7d4c429d7104d77bdd631539b7057))
+
+
+### Reverts
+
+* Revert "Specify Xenial instead of Bionic in Travis." (#18) ([ba6c47b](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/ba6c47ba011c9178400ea4156be27723743e817a)), closes [#18](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/18)
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
