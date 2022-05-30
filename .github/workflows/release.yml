@@ -36,7 +36,7 @@ jobs:
     
     - name: Semantic Release dry run to get new Semantic Version
       env:
-        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+        GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
       run: npx semantic-release --dry-run
     
     - name: Build with new Semantic Version
@@ -47,7 +47,7 @@ jobs:
     
     - name: Semantic Release
       env:
-        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+        GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
       run: npx semantic-release
     
     - name: Publish package on NuGet
