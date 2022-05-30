@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 6.0.x
     
     - name: Setup Node
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: 16.x
         
