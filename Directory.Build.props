@@ -5,5 +5,7 @@
         <Company>Christopher Kyle Horton</Company>
         <Copyright>Copyright © Christopher Kyle Horton 2019-2022</Copyright>
         <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
+        <RepositoryBranch>main</RepositoryBranch>
+        <RepositoryCommit>5f423665b0252384824389c5921537213a73338f</RepositoryCommit>
     </PropertyGroup>
 </Project>
