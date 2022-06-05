@@ -48,6 +48,7 @@ jobs:
     - name: Semantic Release
       env:
         GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
       run: npx semantic-release
     
     - name: Publish package on NuGet
