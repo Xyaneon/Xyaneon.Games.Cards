@@ -37,6 +37,12 @@
             }
         ],
         [
+            "@droidsolutions-oss/semantic-release-nuget",
+            {
+                "includeSymbols": true
+            }
+        ],
+        [
             "@semantic-release/git",
             {
                 "assets": [
