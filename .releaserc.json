@@ -16,12 +16,6 @@
             }
         ],
         [
-            "@semantic-release/exec",
-            {
-                "verifyReleaseCmd": "echo RELEASE_VERSION=${nextRelease.version} >> $GITHUB_ENV"
-            }
-        ],
-        [
             "@droidsolutions-oss/semantic-release-update-file",
             {
                 "files": [
