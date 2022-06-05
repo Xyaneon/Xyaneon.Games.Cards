@@ -22,10 +22,23 @@
             }
         ],
         [
+            "@droidsolutions-oss/semantic-release-update-file",
+            {
+                "files": [
+                    {
+                        "path": ["Directory.Build.props"],
+                        "type": "xml",
+                        "replacements": [{ "key": "Version", "value": "${nextRelease.version}" }]
+                    }
+                ]
+            }
+        ],
+        [
             "@semantic-release/git",
             {
                 "assets": [
-                    "CHANGELOG.md"
+                    "CHANGELOG.md",
+                    "Directory.Build.props"
                 ]
             }
         ],
