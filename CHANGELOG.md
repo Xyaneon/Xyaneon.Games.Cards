@@ -1,5 +1,12 @@
 # Changelog
 
+# [1.1.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v1.0.0...v1.1.0) (2022-06-05)
+
+
+### Features
+
+* Add SuitSymbols constants class ([091b06e](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/091b06e3344a41d8b9b5bb17987cbc62f155bc92))
+
 # [1.0.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v0.4.0...v1.0.0) (2022-05-29)
 
 
