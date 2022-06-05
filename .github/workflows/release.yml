@@ -34,22 +34,8 @@ jobs:
     - name: Test
       run: dotnet test -c Release --no-build --verbosity normal
     
-    - name: Semantic Release dry run to get new Semantic Version
-      env:
-        GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
-      run: npx semantic-release --dry-run
-    
-    - name: Build with new Semantic Version
-      run: dotnet build -c Release --no-restore -p:Version=${{ env.RELEASE_VERSION }}
-    
-    - name: Package
-      run: dotnet pack -c Release --no-build --include-symbols -p:Version=${{ env.RELEASE_VERSION }} -o dist/
-    
     - name: Semantic Release
       env:
         GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE }}
         NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
       run: npx semantic-release
-    
-    - name: Publish package on NuGet
-      run: dotnet nuget push dist/*.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_API_KEY }}
