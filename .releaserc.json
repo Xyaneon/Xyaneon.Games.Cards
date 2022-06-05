@@ -39,6 +39,7 @@
         [
             "@droidsolutions-oss/semantic-release-nuget",
             {
+                "projectPath": "Xyaneon.Games.Cards/Xyaneon.Games.Cards.csproj",
                 "includeSymbols": true
             }
         ],
