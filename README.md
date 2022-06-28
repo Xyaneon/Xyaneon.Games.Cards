@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/github/license/Xyaneon/Xyaneon.Games.Cards)][License]
 [![NuGet](https://img.shields.io/nuget/v/Xyaneon.Games.Cards.svg?style=flat)][NuGet package]
+![Nuget downloads](https://img.shields.io/nuget/dt/Xyaneon.Games.Cards)
 [![.NET](https://github.com/Xyaneon/Xyaneon.Games.Cards/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Xyaneon/Xyaneon.Games.Cards/actions/workflows/dotnet.yml)
 
 ![Package Icon][icon]
