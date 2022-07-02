@@ -1,5 +1,12 @@
 # Changelog
 
+# [1.2.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v1.1.0...v1.2.0) (2022-07-02)
+
+
+### Features
+
+* **compatibility:** change target back to .NET 2.0 Standard ([#40](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/40)) ([cffebf6](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/cffebf60e700ddd44e4365630a0c8ab634a1af2a))
+
 # [1.1.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v1.0.0...v1.1.0) (2022-06-05)
 
 

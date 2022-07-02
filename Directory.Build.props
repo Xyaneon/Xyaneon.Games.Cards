@@ -1,11 +1,11 @@
 <Project>
     <PropertyGroup>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <Authors>Christopher Kyle Horton</Authors>
         <Company>Christopher Kyle Horton</Company>
         <Copyright>Copyright © Christopher Kyle Horton 2019-2022</Copyright>
         <RepositoryUrl>https://github.com/Xyaneon/Xyaneon.Games.Cards</RepositoryUrl>
         <RepositoryBranch>main</RepositoryBranch>
-        <RepositoryCommit>091b06e3344a41d8b9b5bb17987cbc62f155bc92</RepositoryCommit>
+        <RepositoryCommit>cffebf60e700ddd44e4365630a0c8ab634a1af2a</RepositoryCommit>
     </PropertyGroup>
 </Project>
