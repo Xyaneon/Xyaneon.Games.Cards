@@ -4,6 +4,7 @@
 [![NuGet](https://img.shields.io/nuget/v/Xyaneon.Games.Cards.svg?style=flat)][NuGet package]
 ![Nuget downloads](https://img.shields.io/nuget/dt/Xyaneon.Games.Cards)
 [![.NET](https://github.com/Xyaneon/Xyaneon.Games.Cards/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Xyaneon/Xyaneon.Games.Cards/actions/workflows/dotnet.yml)
+[![semantic-release: conventionalcommits](https://img.shields.io/badge/semantic--release-conventionalcommits-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ![Package Icon][icon]
 
