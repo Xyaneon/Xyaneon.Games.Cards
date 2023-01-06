@@ -100,17 +100,6 @@ namespace Xyaneon.Games.Cards.StandardPlayingCards
             return Equals(obj as StandardPlayingCard);
         }
 
-        /// <summary>
-        /// Gets a hash code for this <see cref="StandardPlayingCard"/>.
-        /// </summary>
-        /// <returns>
-        /// A a hash code for the current <see cref="StandardPlayingCard"/>.
-        /// </returns>
-        public override int GetHashCode()
-        {
-            return Rank.GetHashCode() ^ Suit.GetHashCode();
-        }
-
         #endregion // End public methods region.
 
         #endregion // End methods region.
