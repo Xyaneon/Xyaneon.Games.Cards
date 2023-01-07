@@ -82,24 +82,6 @@ namespace Xyaneon.Games.Cards.StandardPlayingCards
 
         #region Public methods
 
-        /// <summary>
-        /// Determines whether the specified object is equal to
-        /// this <see cref="StandardPlayingCard"/>.
-        /// </summary>
-        /// <param name="obj">
-        /// The object to compare to the current
-        /// <see cref="StandardPlayingCard"/>.
-        /// </param>
-        /// <returns>
-        /// <see langword="true"/> if the specified object is equal to
-        /// this <see cref="StandardPlayingCard"/>; otherwise,
-        /// <see langword="false"/>.
-        /// </returns>
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as StandardPlayingCard);
-        }
-
         #endregion // End public methods region.
 
         #endregion // End methods region.
