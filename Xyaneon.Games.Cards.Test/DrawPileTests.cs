@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xyaneon.Games.Cards.Test.Extensions;
 using Xyaneon.Games.Cards.Test.Helpers;
 
 namespace Xyaneon.Games.Cards.Test
@@ -38,7 +39,7 @@ namespace Xyaneon.Games.Cards.Test
             Assert.AreEqual(expectedFaceDown, faceDownDrawPile.IsFaceUp);
             foreach (var drawPile in new DrawPile<Card>[] { defaultDrawPile, faceUpDrawPile, faceDownDrawPile })
             {
-                Assert.IsTrue(drawPile.IsEmpty);
+                Assert.That.DrawPileIsEmpty(drawPile);
             }
         }
 
@@ -60,7 +61,7 @@ namespace Xyaneon.Games.Cards.Test
 
             // Assert.
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
-            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+            Assert.That.CardSetsAreEqual(expectedCardSet, actualCardSet);
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The shuffling algorithm to use cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The shuffling algorithm to use cannot be null.");
         }
 
         /// <summary>
@@ -107,7 +108,7 @@ namespace Xyaneon.Games.Cards.Test
             actualCardList = drawPile.Cards.ToList();
 
             // Assert.
-            CollectionAssert.AreEqual(expectedCardList, actualCardList);
+            Assert.That.CardListsAreEqual(expectedCardList, actualCardList);
         }
 
         /// <summary>
@@ -127,7 +128,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The draw pile to shuffle into this draw pile cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The draw pile to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -151,9 +152,9 @@ namespace Xyaneon.Games.Cards.Test
 
             // Assert.
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
-            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+            Assert.That.CardSetsAreEqual(expectedCardSet, actualCardSet);
             Assert.AreEqual(expectedCardSet.Count, drawPile1.Cards.Count);
-            Assert.AreEqual(0, drawPile2.Cards.Count);
+            Assert.That.DrawPileIsEmpty(drawPile2);
         }
 
         /// <summary>
@@ -178,7 +179,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The draw pile to shuffle into this draw pile cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The draw pile to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -200,7 +201,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The shuffling algorithm to use cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The shuffling algorithm to use cannot be null.");
         }
 
         /// <summary>
@@ -227,8 +228,8 @@ namespace Xyaneon.Games.Cards.Test
             var actualCardList = drawPile1.Cards.ToList();
 
             // Assert.
-            CollectionAssert.AreEqual(expectedCardList, actualCardList, $"Card lists differ.\nExpected: {FormatCardList(expectedCardList)}.\nActual  : {FormatCardList(actualCardList)}.\n");
-            Assert.AreEqual(0, drawPile2.Cards.Count);
+            Assert.That.CardListsAreEqual(expectedCardList, actualCardList);
+            Assert.That.DrawPileIsEmpty(drawPile2);
         }
 
         /// <summary>
@@ -248,7 +249,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The collection of cards to shuffle into this draw pile cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The collection of cards to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -271,7 +272,7 @@ namespace Xyaneon.Games.Cards.Test
 
             // Assert.
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
-            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+            Assert.That.CardSetsAreEqual(expectedCardSet, actualCardSet);
             Assert.AreEqual(expectedCardSet.Count, drawPile.Cards.Count);
         }
 
@@ -297,7 +298,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The collection of cards to shuffle into this draw pile cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The collection of cards to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -318,7 +319,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.IsTrue(actualException.Message.Contains("The shuffling algorithm to use cannot be null."));
+            Assert.That.StringContains(actualException.Message, "The shuffling algorithm to use cannot be null.");
         }
 
         /// <summary>
@@ -341,10 +342,10 @@ namespace Xyaneon.Games.Cards.Test
 
             // Act.
             drawPile.ShuffleIn(cards2, shuffleAlgorithm);
-            var actualCardList = drawPile.Cards.ToList();
+            var actualCardList = drawPile.Cards;
 
             // Assert.
-            CollectionAssert.AreEqual(expectedCardList, actualCardList, $"Card lists differ.\nExpected: {FormatCardList(expectedCardList)}.\nActual  : {FormatCardList(actualCardList)}.\n");
+            Assert.That.CardListsAreEqual(expectedCardList, actualCardList);
         }
 
         /// <summary>
@@ -366,9 +367,9 @@ namespace Xyaneon.Games.Cards.Test
 
             // Assert.
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
-            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
-            Assert.IsTrue(expectedCardSet.SetEquals(new HashSet<IntCard>(drawnCards)));
-            Assert.AreEqual(0, drawPile.Cards.Count);
+            Assert.That.CardSetsAreEqual(expectedCardSet, actualCardSet);
+            Assert.That.CardSetsAreEqual(expectedCardSet, new HashSet<IntCard>(drawnCards));
+            Assert.That.DrawPileIsEmpty(drawPile);
         }
 
         /// <summary>
@@ -403,11 +404,6 @@ namespace Xyaneon.Games.Cards.Test
             {
                 return a.Value - b.Value;
             }));
-        }
-
-        private static string FormatCardList(IEnumerable<IntCard> cards)
-        {
-            return "[" + string.Join(", ", cards) + "]";
         }
     }
 }
