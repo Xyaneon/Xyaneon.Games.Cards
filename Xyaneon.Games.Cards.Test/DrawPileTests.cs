@@ -131,6 +131,32 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
+        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard})"/>
+        /// functionality with a valid <see cref="DrawPile{TCard}"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInDrawPileTest()
+        {
+            // Arrange.
+            var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
+            var drawPile1 = new DrawPile<IntCard>(cards1);
+            var drawPile2 = new DrawPile<IntCard>(cards2);
+            HashSet<IntCard> actualCardSet;
+            var expectedCardSet = cards1.Concat(cards2).ToHashSet();
+
+            // Act.
+            drawPile1.ShuffleIn(drawPile2);
+            actualCardSet = drawPile1.Cards.ToHashSet();
+
+            // Assert.
+            Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
+            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+            Assert.AreEqual(expectedCardSet.Count, drawPile1.Cards.Count);
+            Assert.AreEqual(0, drawPile2.Cards.Count);
+        }
+
+        /// <summary>
         /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard})"/>
         /// method rejects a null <see cref="IEnumerable{TCard}"/> argument.
         /// </summary>
@@ -148,6 +174,30 @@ namespace Xyaneon.Games.Cards.Test
 
             // Assert.
             Assert.IsTrue(actualException.Message.Contains("The collection of cards to shuffle into this draw pile cannot be null."));
+        }
+
+        /// <summary>
+        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard})"/>
+        /// functionality with a valid <see cref="IEnumerable{TCard}"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInEnumerableTest()
+        {
+            // Arrange.
+            var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
+            var drawPile = new DrawPile<IntCard>(cards1);
+            HashSet<IntCard> actualCardSet;
+            var expectedCardSet = cards1.Concat(cards2).ToHashSet();
+
+            // Act.
+            drawPile.ShuffleIn(cards2);
+            actualCardSet = drawPile.Cards.ToHashSet();
+
+            // Assert.
+            Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
+            Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+            Assert.AreEqual(expectedCardSet.Count, drawPile.Cards.Count);
         }
 
         /// <summary>
