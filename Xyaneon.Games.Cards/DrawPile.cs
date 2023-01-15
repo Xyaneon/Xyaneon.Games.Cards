@@ -310,6 +310,26 @@ namespace Xyaneon.Games.Cards
         }
 
         /// <summary>
+        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
+        /// using the supplied shuffling algorithm.
+        /// </summary>
+        /// <param name="shuffleAlgorithm">
+        /// The delegate providing the shuffling algorithm to use.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        public void Shuffle(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        {
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
+            ShuffleBase(shuffleAlgorithm);
+        }
+
+        /// <summary>
         /// Shuffles the provided draw pile into this
         /// <see cref="DrawPile{TCard}"/> using a default shuffling algorithm.
         /// </summary>

@@ -1,5 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xyaneon.Games.Cards.Test.Helpers;
 
 namespace Xyaneon.Games.Cards.Test
@@ -59,6 +61,53 @@ namespace Xyaneon.Games.Cards.Test
             // Assert.
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
             Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
+        }
+
+        /// <summary>
+        /// Ensures custom shuffling of the <see cref="DrawPile{TCard}"/> class
+        /// will not accept a null delegate.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_CustomShuffleAlgorithmShouldRejectNullTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm = null;
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.Shuffle(shuffleAlgorithm);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The shuffling algorithm to use cannot be null."));
+        }
+
+        /// <summary>
+        /// Tests custom shuffling of the <see cref="DrawPile{TCard}"/> class.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_CustomShuffleAlgorithmTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var expectedCardSet = new HashSet<IntCard>(cards);
+            List<IntCard> actualCardList;
+            var drawPile = new DrawPile<IntCard>(cards);
+            // For the custom shuffling algorithm, simply reverse the existing
+            // card order as a predictable way of determining the shuffling was
+            // done correctly in a unit testing context.
+            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
+                cards => cards.Reverse().ToList();
+            var expectedCardList = cards.Reverse().ToList();
+
+            // Act.
+            drawPile.Shuffle(shuffleAlgorithm);
+            actualCardList = drawPile.Cards.ToList();
+
+            // Assert.
+            CollectionAssert.AreEqual(expectedCardList, actualCardList);
         }
 
         /// <summary>
