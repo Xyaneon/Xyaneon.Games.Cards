@@ -82,7 +82,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The shuffling algorithm to use cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The shuffling algorithm to use cannot be null.");
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The draw pile to shuffle into this draw pile cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The draw pile to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The draw pile to shuffle into this draw pile cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The draw pile to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The shuffling algorithm to use cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The shuffling algorithm to use cannot be null.");
         }
 
         /// <summary>
@@ -249,7 +249,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The collection of cards to shuffle into this draw pile cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The collection of cards to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -298,7 +298,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The collection of cards to shuffle into this draw pile cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The collection of cards to shuffle into this draw pile cannot be null.");
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace Xyaneon.Games.Cards.Test
             });
 
             // Assert.
-            Assert.That.StringContains(actualException.Message, "The shuffling algorithm to use cannot be null.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The shuffling algorithm to use cannot be null.");
         }
 
         /// <summary>

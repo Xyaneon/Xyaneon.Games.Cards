@@ -38,24 +38,24 @@ namespace Xyaneon.Games.Cards.Test.Extensions
             throw new AssertFailedException($"The draw pile was expected to be empty, but contained {drawPile.Cards.Count} card(s).");
         }
 
-        public static void StringContains(this Assert assert, string actualString, string expectedSubstring)
+        public static void ExceptionMessageStartsWith(this Assert assert, Exception actualException, string expected)
         {
-            if (actualString.Contains(expectedSubstring))
+            if (actualException.Message.StartsWith(expected))
             {
                 return;
             }
 
-            throw new AssertFailedException(CreateSubstringNotFoundMessage(expectedSubstring, actualString));
+            throw new AssertFailedException(CreateExceptionMessageDidNotStartWithMessage(actualException, expected));
         }
 
-        private static string CreateSubstringNotFoundMessage(string expectedSubstring, string actualString)
+        private static string CreateExceptionMessageDidNotStartWithMessage(Exception actualException, string expectedSubstring)
         {
             return (new StringBuilder())
-                .AppendLine("Substring not found.")
+                .AppendLine("Exception message did not start with expected substring.")
                 .Append("Expected: ")
                 .AppendLine($"\"{expectedSubstring}\"")
                 .Append("Actual  : ")
-                .AppendLine($"\"{actualString}\"")
+                .AppendLine($"\"{actualException.Message}\"")
                 .ToString();
         }
 
