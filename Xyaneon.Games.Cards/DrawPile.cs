@@ -276,18 +276,17 @@ namespace Xyaneon.Games.Cards
         }
 
         /// <summary>
-        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
-        /// using a default shuffling algorithm.
+        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>.
         /// </summary>
         /// <remarks>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
-        /// <see cref="Shuffle(IShuffleAlgorithm{TCard})"/> overload method.
+        /// This method will use a default shuffling algorithm.
+        /// If you want to use a custom shuffling method instead, then
+        /// consider using the <see cref="Shuffle(IShuffleAlgorithm{TCard})"/>
+        /// overload method.
         /// </remarks>
         public void Shuffle()
         {
-            ShuffleBase(new DefaultShuffleAlgorithm<TCard>());
+            ShuffleBase(DefaultShuffleAlgorithm);
         }
 
         /// <summary>
@@ -459,6 +458,12 @@ namespace Xyaneon.Games.Cards
 
         #region Private methods
 
+        private static IList<TCard> DefaultShuffleAlgorithm(IEnumerable<TCard> cards)
+        {
+            var random = new Random();
+            return cards.OrderBy(c => random.Next()).ToList();
+        }
+
         /// <summary>
         /// The base method for shuffling the cards stored in this object.
         /// The <paramref name="shuffleAlgorithm"/> must always be specified.
@@ -483,6 +488,12 @@ namespace Xyaneon.Games.Cards
         private void ShuffleBase(IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(_cards);
+            _cards = new Stack<TCard>(shuffledCards);
+        }
+
+        private void ShuffleBase(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        {
+            IList<TCard> shuffledCards = shuffleAlgorithm(_cards);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
