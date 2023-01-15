@@ -157,6 +157,81 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// method rejects a null <see cref="DrawPile{TCard}"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInCustomDrawPileShouldRejectNullDrawPileTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+            // For the custom shuffling algorithm, simply reverse the existing
+            // card order as a predictable way of determining the shuffling was
+            // done correctly in a unit testing context.
+            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
+                cards => cards.Reverse().ToList();
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.ShuffleIn((IDrawPile<IntCard>)null, shuffleAlgorithm);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The draw pile to shuffle into this draw pile cannot be null."));
+        }
+
+        /// <summary>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// method rejects a null <see cref="Func{IEnumerable{TCard}, IList{TCard}})"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInCustomDrawPileShouldRejectNullAlgorithmTest()
+        {
+            // Arrange.
+            var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
+            var drawPile1 = new DrawPile<IntCard>(cards1);
+            var drawPile2 = new DrawPile<IntCard>(cards2);
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile1.ShuffleIn(drawPile2, (Func<IEnumerable<IntCard>, IList<IntCard>>)null);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The shuffling algorithm to use cannot be null."));
+        }
+
+        /// <summary>
+        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// functionality with valid arguments.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInCustomDrawPileTest()
+        {
+            // Arrange.
+            var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
+            var drawPile1 = new DrawPile<IntCard>(cards1);
+            var drawPile2 = new DrawPile<IntCard>(cards2);
+            // For the custom shuffling algorithm, simply reverse the existing
+            // card order as a predictable way of determining the shuffling was
+            // done correctly in a unit testing context.
+            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
+                cards => cards.Reverse().ToList();
+            var expectedCardList = cards2.Concat(cards1).Reverse().ToList();
+
+            // Act.
+            drawPile1.ShuffleIn(drawPile2, shuffleAlgorithm);
+            var actualCardList = drawPile1.Cards.ToList();
+
+            // Assert.
+            CollectionAssert.AreEqual(expectedCardList, actualCardList, $"Card lists differ.\nExpected: {FormatCardList(expectedCardList)}.\nActual  : {FormatCardList(actualCardList)}.\n");
+            Assert.AreEqual(0, drawPile2.Cards.Count);
+        }
+
+        /// <summary>
         /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard})"/>
         /// method rejects a null <see cref="IEnumerable{TCard}"/> argument.
         /// </summary>
@@ -198,6 +273,78 @@ namespace Xyaneon.Games.Cards.Test
             Assert.AreEqual(expectedCardSet.Count, actualCardSet.Count);
             Assert.IsTrue(expectedCardSet.SetEquals(actualCardSet));
             Assert.AreEqual(expectedCardSet.Count, drawPile.Cards.Count);
+        }
+
+        /// <summary>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// method rejects a null <see cref="IEnumerable{TCard}"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInCustomEnumerableShouldRejectNullEnumerableTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+            // For the custom shuffling algorithm, simply reverse the existing
+            // card order as a predictable way of determining the shuffling was
+            // done correctly in a unit testing context.
+            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
+                cards => cards.Reverse().ToList();
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.ShuffleIn((IEnumerable<IntCard>)null, shuffleAlgorithm);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The collection of cards to shuffle into this draw pile cannot be null."));
+        }
+
+        /// <summary>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// method rejects a null <see cref="Func{IEnumerable{TCard}, IList{TCard}})"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInCustomEnumerableShouldRejectNullAlgorithmTest()
+        {
+            // Arrange.
+            var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
+            var drawPile = new DrawPile<IntCard>(cards1);
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.ShuffleIn(cards2, (Func<IEnumerable<IntCard>, IList<IntCard>>)null);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The shuffling algorithm to use cannot be null."));
+        }
+
+        /// <summary>
+        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// functionality with valid arguments.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInCustomEnumerableTest()
+        {
+            // Arrange.
+            var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
+            var drawPile = new DrawPile<IntCard>(cards1);
+            // For the custom shuffling algorithm, simply reverse the existing
+            // card order as a predictable way of determining the shuffling was
+            // done correctly in a unit testing context.
+            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
+                cards => cards.Reverse().ToList();
+            var expectedCardList = cards2.Reverse().Concat(cards1).Reverse().ToList();
+
+            // Act.
+            drawPile.ShuffleIn(cards2, shuffleAlgorithm);
+            var actualCardList = drawPile.Cards.ToList();
+
+            // Assert.
+            CollectionAssert.AreEqual(expectedCardList, actualCardList, $"Card lists differ.\nExpected: {FormatCardList(expectedCardList)}.\nActual  : {FormatCardList(actualCardList)}.\n");
         }
 
         /// <summary>
@@ -256,6 +403,11 @@ namespace Xyaneon.Games.Cards.Test
             {
                 return a.Value - b.Value;
             }));
+        }
+
+        private static string FormatCardList(IEnumerable<IntCard> cards)
+        {
+            return "[" + string.Join(", ", cards) + "]";
         }
     }
 }
