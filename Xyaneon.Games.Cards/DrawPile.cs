@@ -342,9 +342,8 @@ namespace Xyaneon.Games.Cards
         /// </exception>
         /// <remarks>
         /// <para>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
+        /// This method will use a default shuffling algorithm. If you want to
+        /// use a custom shuffling method instead, then consider using the
         /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
         /// overload method.
         /// </para>
@@ -360,7 +359,7 @@ namespace Xyaneon.Games.Cards
                 throw new ArgumentNullException(nameof(other), "The draw pile to shuffle into this draw pile cannot be null.");
             }
 
-            ShuffleInBase(other, new DefaultShuffleAlgorithm<TCard>());
+            ShuffleInBase(other, DefaultShuffleAlgorithm);
         }
 
         /// <summary>
@@ -413,9 +412,8 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="cards"/> is <see langword="null"/>.
         /// </exception>
         /// <remarks>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
+        /// This method will use the default shuffling algorithm. If you want
+        /// to use a custom shuffling method instead, then consider using the
         /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
         /// overload method.
         /// </remarks>
@@ -426,7 +424,7 @@ namespace Xyaneon.Games.Cards
                 throw new ArgumentNullException(nameof(cards), "The collection of cards to shuffle into this draw pile cannot be null.");
             }
 
-            ShuffleInBase(cards, new DefaultShuffleAlgorithm<TCard>());
+            ShuffleInBase(cards, DefaultShuffleAlgorithm);
         }
 
         /// <summary>
@@ -553,6 +551,13 @@ namespace Xyaneon.Games.Cards
             _cards = new Stack<TCard>(shuffledCards);
         }
 
+        private void ShuffleInBase(IDrawPile<TCard> other, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        {
+            IEnumerable<TCard> cardsToShuffle = _cards.Concat(other.DrawAll());
+            IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
+            _cards = new Stack<TCard>(shuffledCards);
+        }
+
         /// <summary>
         /// The base method for shuffling the supplied <paramref name="cards"/>
         /// into this <see cref="DrawPile{TCard}"/>. The
@@ -582,6 +587,13 @@ namespace Xyaneon.Games.Cards
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(cardsToShuffle);
+            _cards = new Stack<TCard>(shuffledCards);
+        }
+
+        private void ShuffleInBase(IEnumerable<TCard> cards, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        {
+            IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
+            IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
