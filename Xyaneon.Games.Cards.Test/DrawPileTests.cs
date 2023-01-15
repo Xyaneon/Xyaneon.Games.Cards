@@ -111,6 +111,46 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard})"/>
+        /// method rejects a null <see cref="DrawPile{TCard}"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInDrawPileShouldRejectNullDrawPileTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.ShuffleIn((IDrawPile<IntCard>)null);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The draw pile to shuffle into this draw pile cannot be null."));
+        }
+
+        /// <summary>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard})"/>
+        /// method rejects a null <see cref="IEnumerable{TCard}"/> argument.
+        /// </summary>
+        [TestMethod]
+        public void DrawPile_ShuffleInEnumerableShouldRejectNullEnumerableTest()
+        {
+            // Arrange.
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            // Act.
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.ShuffleIn((IEnumerable<IntCard>)null);
+            });
+
+            // Assert.
+            Assert.IsTrue(actualException.Message.Contains("The collection of cards to shuffle into this draw pile cannot be null."));
+        }
+
+        /// <summary>
         /// Tests the <see cref="DrawPile{TCard}.DrawAll"/> method.
         /// </summary>
         [TestMethod]
