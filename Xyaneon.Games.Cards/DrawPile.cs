@@ -310,26 +310,6 @@ namespace Xyaneon.Games.Cards
         }
 
         /// <summary>
-        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
-        /// using the supplied shuffling algorithm.
-        /// </summary>
-        /// <param name="shuffleAlgorithm">
-        /// The delegate providing the shuffling algorithm to use.
-        /// </param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
-        /// </exception>
-        public void Shuffle(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
-        {
-            if (shuffleAlgorithm == null)
-            {
-                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
-            }
-
-            ShuffleBase(shuffleAlgorithm);
-        }
-
-        /// <summary>
         /// Shuffles the provided draw pile into this
         /// <see cref="DrawPile{TCard}"/> using a default shuffling algorithm.
         /// </summary>
@@ -386,44 +366,6 @@ namespace Xyaneon.Games.Cards
         /// </para>
         /// </remarks>
         public void ShuffleIn(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm)
-        {
-            if (other == null)
-            {
-                throw new ArgumentNullException(nameof(other), "The draw pile to shuffle into this draw pile cannot be null.");
-            }
-
-            if (shuffleAlgorithm == null)
-            {
-                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
-            }
-
-            ShuffleInBase(other, shuffleAlgorithm);
-        }
-
-        /// <summary>
-        /// Shuffles the provided draw pile into this
-        /// <see cref="DrawPile{TCard}"/> using the supplied shuffling
-        /// algorithm.
-        /// </summary>
-        /// <param name="other">
-        /// The <see cref="IDrawPile{TCard}"/> to shuffle into this
-        /// <see cref="DrawPile{TCard}"/>.
-        /// </param>
-        /// <param name="shuffleAlgorithm">
-        /// The delegate providing the shuffling algorithm to use.
-        /// </param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="other"/> is <see langword="null"/>.
-        /// -or-
-        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
-        /// </exception>
-        /// <remarks>
-        /// <para>
-        /// <paramref name="other"/> will be emptied of all of its cards as a
-        /// result of calling this algorithm.
-        /// </para>
-        /// </remarks>
-        public void ShuffleIn(IDrawPile<TCard> other, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
         {
             if (other == null)
             {
@@ -497,6 +439,81 @@ namespace Xyaneon.Games.Cards
             ShuffleInBase(cards, shuffleAlgorithm);
         }
 
+        #endregion // End methods region.
+
+        #endregion // End IDrawPile<TCard> implementation region.
+
+        #region Fields
+
+        /// <summary>
+        /// Private backing field for the <see cref="Cards"/> property.
+        /// </summary>
+        private Stack<TCard> _cards;
+
+        #endregion // End fields region.
+
+        #region Methods
+
+        #region Public methods
+
+        /// <summary>
+        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
+        /// using the supplied shuffling algorithm.
+        /// </summary>
+        /// <param name="shuffleAlgorithm">
+        /// The delegate providing the shuffling algorithm to use.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        public void Shuffle(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        {
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
+            ShuffleBase(shuffleAlgorithm);
+        }
+
+        /// <summary>
+        /// Shuffles the provided draw pile into this
+        /// <see cref="DrawPile{TCard}"/> using the supplied shuffling
+        /// algorithm.
+        /// </summary>
+        /// <param name="other">
+        /// The <see cref="IDrawPile{TCard}"/> to shuffle into this
+        /// <see cref="DrawPile{TCard}"/>.
+        /// </param>
+        /// <param name="shuffleAlgorithm">
+        /// The delegate providing the shuffling algorithm to use.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="other"/> is <see langword="null"/>.
+        /// -or-
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        /// <remarks>
+        /// <para>
+        /// <paramref name="other"/> will be emptied of all of its cards as a
+        /// result of calling this algorithm.
+        /// </para>
+        /// </remarks>
+        public void ShuffleIn(IDrawPile<TCard> other, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException(nameof(other), "The draw pile to shuffle into this draw pile cannot be null.");
+            }
+
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
+            ShuffleInBase(other, shuffleAlgorithm);
+        }
+
         /// <summary>
         /// Shuffles the provided <paramref name="cards"/> into this
         /// <see cref="DrawPile{TCard}"/> using the supplied shuffling
@@ -529,20 +546,7 @@ namespace Xyaneon.Games.Cards
             ShuffleInBase(cards, shuffleAlgorithm);
         }
 
-        #endregion // End methods region.
-
-        #endregion // End IDrawPile<TCard> implementation region.
-
-        #region Fields
-
-        /// <summary>
-        /// Private backing field for the <see cref="Cards"/> property.
-        /// </summary>
-        private Stack<TCard> _cards;
-
-        #endregion // End fields region.
-
-        #region Methods
+        #endregion // End public methods region.
 
         #region Private methods
 
