@@ -1,5 +1,17 @@
 # Changelog
 
+# [1.3.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v1.2.0...v1.3.0) (2023-01-16)
+
+
+### Features
+
+* shift to shuffle algorithm as delegate ([#63](https://github.com/Xyaneon/Xyaneon.Games.Cards/issues/63)) ([db5e361](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/db5e361d404cb3bfdaccada1f78159f997879db2))
+
+
+### Reverts
+
+* do not pass a token to release checkout ([de67053](https://github.com/Xyaneon/Xyaneon.Games.Cards/commit/de67053d422dd1e615be6cd1135cd04d3ac50bce))
+
 # [1.2.0](https://github.com/Xyaneon/Xyaneon.Games.Cards/compare/v1.1.0...v1.2.0) (2022-07-02)
 
 
