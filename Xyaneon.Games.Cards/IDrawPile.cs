@@ -162,6 +162,12 @@ namespace Xyaneon.Games.Cards
         /// <exception cref="ArgumentNullException">
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This interface method is deprecated, and will be replaced by a new
+        /// one in an upcoming major release which will replace the usage of
+        /// <see cref="IShuffleAlgorithm{TCard}"/> with a named delegate type.
+        /// </remarks>
+        [Obsolete("IShuffleAlgorithm will be removed in favor of a named delegate in an upcoming major release.")]
         void Shuffle(IShuffleAlgorithm<TCard> shuffleAlgorithm);
 
         /// <summary>
@@ -212,7 +218,13 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="other"/> will be emptied of all of its cards as a
         /// result of calling this algorithm.
         /// </para>
+        /// <para>
+        /// This interface method is deprecated, and will be replaced by a new
+        /// one in an upcoming major release which will replace the usage of
+        /// <see cref="IShuffleAlgorithm{TCard}"/> with a named delegate type.
+        /// </para>
         /// </remarks>
+        [Obsolete("IShuffleAlgorithm will be removed in favor of a named delegate in an upcoming major release.")]
         void ShuffleIn(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm);
 
         /// <summary>
@@ -252,6 +264,12 @@ namespace Xyaneon.Games.Cards
         /// -or-
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This interface method is deprecated, and will be replaced by a new
+        /// one in an upcoming major release which will replace the usage of
+        /// <see cref="IShuffleAlgorithm{TCard}"/> with a named delegate type.
+        /// </remarks>
+        [Obsolete("IShuffleAlgorithm will be removed in favor of a named delegate in an upcoming major release.")]
         void ShuffleIn(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm);
 
         #endregion // End methods region.
