@@ -25,4 +25,4 @@ jobs:
       run: dotnet build --no-restore
       
     - name: Test
-      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings ./Xyaneon.Games.Cards/coverlet.runsettings
+      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings ./Xyaneon.Games.Cards.Test/coverlet.runsettings
