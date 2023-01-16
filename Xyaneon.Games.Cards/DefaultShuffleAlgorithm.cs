@@ -10,6 +10,14 @@ namespace Xyaneon.Games.Cards
     /// <typeparam name="TCard">
     /// The <see cref="Type"/> of cards this algorithm will be used to shuffle.
     /// </typeparam>
+    /// <remarks>
+    /// This class is deprecated, along with the
+    /// <see cref="IShuffleAlgorithm{TCard}"/> interface itself. Instead, you
+    /// should call the shuffling methods on <see cref="DrawPile{TCard}"/>
+    /// that do not need a shuffling algorithm supplied to get the same
+    /// default shuffling behavior.
+    /// </remarks>
+    [Obsolete("This class is deprecated along with the IShuffleAlgorithm interface. Instead, use DrawPile<TCard> shuffling methods without specifying a shuffling algorithm.")]
     public sealed class DefaultShuffleAlgorithm<TCard> : IShuffleAlgorithm<TCard> where TCard : Card
     {
         #region IShuffleAlgorithm<TCard> implementation
