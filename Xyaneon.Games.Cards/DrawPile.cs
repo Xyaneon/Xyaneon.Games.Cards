@@ -601,7 +601,9 @@ namespace Xyaneon.Games.Cards
         /// supplied when needed.
         /// </para>
         /// </remarks>
+        #pragma warning disable 618
         private void ShuffleBase(IShuffleAlgorithm<TCard> shuffleAlgorithm)
+        #pragma warning restore 618
         {
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(_cards);
             _cards = new Stack<TCard>(shuffledCards);
@@ -642,7 +644,9 @@ namespace Xyaneon.Games.Cards
         /// result of calling this algorithm.
         /// </para>
         /// </remarks>
+        #pragma warning disable 618
         private void ShuffleInBase(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm)
+        #pragma warning restore 618
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(other.DrawAll());
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(cardsToShuffle);
@@ -681,7 +685,9 @@ namespace Xyaneon.Games.Cards
         /// supplied when needed.
         /// </para>
         /// </remarks>
+        #pragma warning disable 618
         private void ShuffleInBase(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm)
+        #pragma warning restore 618
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(cardsToShuffle);
