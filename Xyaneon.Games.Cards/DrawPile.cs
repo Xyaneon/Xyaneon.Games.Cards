@@ -16,6 +16,7 @@ namespace Xyaneon.Games.Cards
     /// <see cref="IDrawPile{TCard}"/> interface.
     /// </remarks>
     /// <seealso cref="IDrawPile{TCard}"/>
+    /// <seealso cref="ShuffleFunction{TCard}"/>
     public class DrawPile<TCard> : IDrawPile<TCard> where TCard : Card
     {
         #region Constructors
@@ -276,18 +277,17 @@ namespace Xyaneon.Games.Cards
         }
 
         /// <summary>
-        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
-        /// using a default shuffling algorithm.
+        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>.
         /// </summary>
         /// <remarks>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
-        /// <see cref="Shuffle(IShuffleAlgorithm{TCard})"/> overload method.
+        /// This method will use a default shuffling algorithm.
+        /// If you want to use a custom shuffling method instead, then
+        /// consider using the <see cref="Shuffle(IShuffleAlgorithm{TCard})"/>
+        /// overload method.
         /// </remarks>
         public void Shuffle()
         {
-            ShuffleBase(new DefaultShuffleAlgorithm<TCard>());
+            ShuffleBase(DefaultShuffleAlgorithm);
         }
 
         /// <summary>
@@ -300,6 +300,13 @@ namespace Xyaneon.Games.Cards
         /// <exception cref="ArgumentNullException">
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This interface method is deprecated, along with all others using
+        /// <see cref="IShuffleAlgorithm{TCard}"/>. Instead, you should use
+        /// the <see cref="Shuffle(ShuffleFunction{TCard})"/> method.
+        /// </remarks>
+        /// <seealso cref="Shuffle(ShuffleFunction{TCard})"/>
+        [Obsolete("IShuffleAlgorithm interface methods are deprecated. Use Shuffle(ShuffleFunction<TCard>) instead.")]
         public void Shuffle(IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (shuffleAlgorithm == null)
@@ -323,9 +330,8 @@ namespace Xyaneon.Games.Cards
         /// </exception>
         /// <remarks>
         /// <para>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
+        /// This method will use a default shuffling algorithm. If you want to
+        /// use a custom shuffling method instead, then consider using the
         /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
         /// overload method.
         /// </para>
@@ -341,7 +347,7 @@ namespace Xyaneon.Games.Cards
                 throw new ArgumentNullException(nameof(other), "The draw pile to shuffle into this draw pile cannot be null.");
             }
 
-            ShuffleInBase(other, new DefaultShuffleAlgorithm<TCard>());
+            ShuffleInBase(other, DefaultShuffleAlgorithm);
         }
 
         /// <summary>
@@ -366,7 +372,15 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="other"/> will be emptied of all of its cards as a
         /// result of calling this algorithm.
         /// </para>
+        /// <para>
+        /// This interface method is deprecated, along with all others using
+        /// <see cref="IShuffleAlgorithm{TCard}"/>. Instead, you should use
+        /// the <see cref="ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
+        /// method.
+        /// </para>
         /// </remarks>
+        /// <seealso cref="ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
+        [Obsolete("IShuffleAlgorithm interface methods are deprecated. Use ShuffleIn(IDrawPile<TCard>, ShuffleFunction<TCard>) instead.")]
         public void ShuffleIn(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (other == null)
@@ -394,9 +408,8 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="cards"/> is <see langword="null"/>.
         /// </exception>
         /// <remarks>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
+        /// This method will use the default shuffling algorithm. If you want
+        /// to use a custom shuffling method instead, then consider using the
         /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
         /// overload method.
         /// </remarks>
@@ -407,7 +420,7 @@ namespace Xyaneon.Games.Cards
                 throw new ArgumentNullException(nameof(cards), "The collection of cards to shuffle into this draw pile cannot be null.");
             }
 
-            ShuffleInBase(cards, new DefaultShuffleAlgorithm<TCard>());
+            ShuffleInBase(cards, DefaultShuffleAlgorithm);
         }
 
         /// <summary>
@@ -427,6 +440,14 @@ namespace Xyaneon.Games.Cards
         /// -or-
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This interface method is deprecated, along with all others using
+        /// <see cref="IShuffleAlgorithm{TCard}"/>. Instead, you should use
+        /// the <see cref="ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
+        /// method.
+        /// </remarks>
+        /// <seealso cref="ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
+        [Obsolete("IShuffleAlgorithm interface methods are deprecated. Use ShuffleIn(IEnumerable<TCard>, ShuffleFunction<TCard>) instead.")]
         public void ShuffleIn(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (cards == null)
@@ -457,7 +478,107 @@ namespace Xyaneon.Games.Cards
 
         #region Methods
 
+        #region Public methods
+
+        /// <summary>
+        /// Shuffles all of the cards in this <see cref="DrawPile{TCard}"/>
+        /// using the supplied shuffling algorithm.
+        /// </summary>
+        /// <param name="shuffleAlgorithm">
+        /// The delegate providing the shuffling algorithm to use.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        public void Shuffle(ShuffleFunction<TCard> shuffleAlgorithm)
+        {
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
+            ShuffleBase(shuffleAlgorithm);
+        }
+
+        /// <summary>
+        /// Shuffles the provided draw pile into this
+        /// <see cref="DrawPile{TCard}"/> using the supplied shuffling
+        /// algorithm.
+        /// </summary>
+        /// <param name="other">
+        /// The <see cref="IDrawPile{TCard}"/> to shuffle into this
+        /// <see cref="DrawPile{TCard}"/>.
+        /// </param>
+        /// <param name="shuffleAlgorithm">
+        /// The delegate providing the shuffling algorithm to use.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="other"/> is <see langword="null"/>.
+        /// -or-
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        /// <remarks>
+        /// <para>
+        /// <paramref name="other"/> will be emptied of all of its cards as a
+        /// result of calling this algorithm.
+        /// </para>
+        /// </remarks>
+        public void ShuffleIn(IDrawPile<TCard> other, ShuffleFunction<TCard> shuffleAlgorithm)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException(nameof(other), "The draw pile to shuffle into this draw pile cannot be null.");
+            }
+
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
+            ShuffleInBase(other, shuffleAlgorithm);
+        }
+
+        /// <summary>
+        /// Shuffles the provided <paramref name="cards"/> into this
+        /// <see cref="DrawPile{TCard}"/> using the supplied shuffling
+        /// algorithm.
+        /// </summary>
+        /// <param name="cards">
+        /// The collection of cards to shuffle into this
+        /// <see cref="DrawPile{TCard}"/>.
+        /// </param>
+        /// <param name="shuffleAlgorithm">
+        /// The delegate providing the shuffling algorithm to use.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="cards"/> is <see langword="null"/>.
+        /// -or-
+        /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
+        /// </exception>
+        public void ShuffleIn(IEnumerable<TCard> cards, ShuffleFunction<TCard> shuffleAlgorithm)
+        {
+            if (cards == null)
+            {
+                throw new ArgumentNullException(nameof(cards), "The collection of cards to shuffle into this draw pile cannot be null.");
+            }
+
+            if (shuffleAlgorithm == null)
+            {
+                throw new ArgumentNullException(nameof(shuffleAlgorithm), "The shuffling algorithm to use cannot be null.");
+            }
+
+            ShuffleInBase(cards, shuffleAlgorithm);
+        }
+
+        #endregion // End public methods region.
+
         #region Private methods
+
+        private static IList<TCard> DefaultShuffleAlgorithm(IEnumerable<TCard> cards)
+        {
+            var random = new Random();
+            return cards.OrderBy(c => random.Next()).ToList();
+        }
 
         /// <summary>
         /// The base method for shuffling the cards stored in this object.
@@ -480,9 +601,17 @@ namespace Xyaneon.Games.Cards
         /// supplied when needed.
         /// </para>
         /// </remarks>
+        #pragma warning disable 618
         private void ShuffleBase(IShuffleAlgorithm<TCard> shuffleAlgorithm)
+        #pragma warning restore 618
         {
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(_cards);
+            _cards = new Stack<TCard>(shuffledCards);
+        }
+
+        private void ShuffleBase(ShuffleFunction<TCard> shuffleAlgorithm)
+        {
+            IList<TCard> shuffledCards = shuffleAlgorithm(_cards);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
@@ -515,10 +644,19 @@ namespace Xyaneon.Games.Cards
         /// result of calling this algorithm.
         /// </para>
         /// </remarks>
+        #pragma warning disable 618
         private void ShuffleInBase(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm)
+        #pragma warning restore 618
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(other.DrawAll());
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(cardsToShuffle);
+            _cards = new Stack<TCard>(shuffledCards);
+        }
+
+        private void ShuffleInBase(IDrawPile<TCard> other, ShuffleFunction<TCard> shuffleAlgorithm)
+        {
+            IEnumerable<TCard> cardsToShuffle = _cards.Concat(other.DrawAll());
+            IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
@@ -547,10 +685,19 @@ namespace Xyaneon.Games.Cards
         /// supplied when needed.
         /// </para>
         /// </remarks>
+        #pragma warning disable 618
         private void ShuffleInBase(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm)
+        #pragma warning restore 618
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
             IList<TCard> shuffledCards = shuffleAlgorithm.Shuffle(cardsToShuffle);
+            _cards = new Stack<TCard>(shuffledCards);
+        }
+
+        private void ShuffleInBase(IEnumerable<TCard> cards, ShuffleFunction<TCard> shuffleAlgorithm)
+        {
+            IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
+            IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
             _cards = new Stack<TCard>(shuffledCards);
         }
 
@@ -558,4 +705,28 @@ namespace Xyaneon.Games.Cards
 
         #endregion // End methods region.
     }
+
+    /// <summary>
+    /// Encapsulates a method which takes a collection of cards, then returns
+    /// an ordered list of the same cards after shuffling them.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// The shuffling function should always return the same card instances it
+    /// was originally given in the <paramref name="cards"/> argument, but
+    /// most likely in a different order. Elements are expected not to be
+    /// added, removed or modified by the provided function, although strictly
+    /// speaking <see cref="DrawPile{TCard}"/> does not enforce this.
+    /// </para>
+    /// <para>
+    /// You do not need to define nor supply your own
+    /// <see cref="ShuffleFunction{TCard}"/> to shuffle instances of
+    /// <see cref="DrawPile{TCard}"/>. Omitting it will simply make
+    /// <see cref="DrawPile{TCard}"/> use an internal default. However, you
+    /// can create one if you desire specific shuffling behavior, or for
+    /// testing purposes.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="DrawPile{TCard}"/>
+    public delegate IList<TCard> ShuffleFunction<TCard>(IEnumerable<TCard> cards) where TCard : Card;
 }

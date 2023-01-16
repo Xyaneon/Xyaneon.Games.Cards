@@ -29,5 +29,7 @@
         public int Value { get; }
 
         #endregion // End properties region.
+
+        public override string ToString() => Value.ToString();
     }
 }
