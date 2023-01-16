@@ -9,6 +9,13 @@ namespace Xyaneon.Games.Cards
     /// <typeparam name="TCard">
     /// The <see cref="Type"/> of cards this algorithm will be used to shuffle.
     /// </typeparam>
+    /// <remarks>
+    /// This interface is deprecated and will be removed in an upcoming major
+    /// release. Instead, you should provide your own
+    /// <see cref="ShuffleFunction{TCard}"/> delegate implementations to the
+    /// shuffling methods on <see cref="DrawPile{TCard}"/> which accept one.
+    /// </remarks>
+    [Obsolete("This interface is deprecated. Instead, provide your own ShuffleFunction<TCard> delegate implementation to DrawPile<TCard> shuffling methods which accept one.")]
     public interface IShuffleAlgorithm<TCard> where TCard : Card
     {
         #region Methods
