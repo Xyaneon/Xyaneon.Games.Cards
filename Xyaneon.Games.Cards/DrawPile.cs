@@ -16,6 +16,7 @@ namespace Xyaneon.Games.Cards
     /// <see cref="IDrawPile{TCard}"/> interface.
     /// </remarks>
     /// <seealso cref="IDrawPile{TCard}"/>
+    /// <seealso cref="ShuffleFunction{TCard}"/>
     public class DrawPile<TCard> : IDrawPile<TCard> where TCard : Card
     {
         #region Constructors
@@ -466,7 +467,7 @@ namespace Xyaneon.Games.Cards
         /// <exception cref="ArgumentNullException">
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
-        public void Shuffle(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        public void Shuffle(ShuffleFunction<TCard> shuffleAlgorithm)
         {
             if (shuffleAlgorithm == null)
             {
@@ -499,7 +500,7 @@ namespace Xyaneon.Games.Cards
         /// result of calling this algorithm.
         /// </para>
         /// </remarks>
-        public void ShuffleIn(IDrawPile<TCard> other, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        public void ShuffleIn(IDrawPile<TCard> other, ShuffleFunction<TCard> shuffleAlgorithm)
         {
             if (other == null)
             {
@@ -531,7 +532,7 @@ namespace Xyaneon.Games.Cards
         /// -or-
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
-        public void ShuffleIn(IEnumerable<TCard> cards, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        public void ShuffleIn(IEnumerable<TCard> cards, ShuffleFunction<TCard> shuffleAlgorithm)
         {
             if (cards == null)
             {
@@ -583,7 +584,7 @@ namespace Xyaneon.Games.Cards
             _cards = new Stack<TCard>(shuffledCards);
         }
 
-        private void ShuffleBase(Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        private void ShuffleBase(ShuffleFunction<TCard> shuffleAlgorithm)
         {
             IList<TCard> shuffledCards = shuffleAlgorithm(_cards);
             _cards = new Stack<TCard>(shuffledCards);
@@ -625,7 +626,7 @@ namespace Xyaneon.Games.Cards
             _cards = new Stack<TCard>(shuffledCards);
         }
 
-        private void ShuffleInBase(IDrawPile<TCard> other, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        private void ShuffleInBase(IDrawPile<TCard> other, ShuffleFunction<TCard> shuffleAlgorithm)
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(other.DrawAll());
             IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
@@ -664,7 +665,7 @@ namespace Xyaneon.Games.Cards
             _cards = new Stack<TCard>(shuffledCards);
         }
 
-        private void ShuffleInBase(IEnumerable<TCard> cards, Func<IEnumerable<TCard>, IList<TCard>> shuffleAlgorithm)
+        private void ShuffleInBase(IEnumerable<TCard> cards, ShuffleFunction<TCard> shuffleAlgorithm)
         {
             IEnumerable<TCard> cardsToShuffle = _cards.Concat(cards);
             IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
@@ -675,4 +676,28 @@ namespace Xyaneon.Games.Cards
 
         #endregion // End methods region.
     }
+
+    /// <summary>
+    /// Encapsulates a method which takes a collection of cards, then returns
+    /// an ordered list of the same cards after shuffling them.
+    /// </summary>
+    /// <remarks>
+    /// <para>
+    /// The shuffling function should always return the same card instances it
+    /// was originally given in the <paramref name="cards"/> argument, but
+    /// most likely in a different order. Elements are expected not to be
+    /// added, removed or modified by the provided function, although strictly
+    /// speaking <see cref="DrawPile{TCard}"/> does not enforce this.
+    /// </para>
+    /// <para>
+    /// You do not need to define nor supply your own
+    /// <see cref="ShuffleFunction{TCard}"/> to shuffle instances of
+    /// <see cref="DrawPile{TCard}"/>. Omitting it will simply make
+    /// <see cref="DrawPile{TCard}"/> use an internal default. However, you
+    /// can create one if you desire specific shuffling behavior, or for
+    /// testing purposes.
+    /// </para>
+    /// </remarks>
+    /// <seealso cref="DrawPile{TCard}"/>
+    public delegate IList<TCard> ShuffleFunction<TCard>(IEnumerable<TCard> cards) where TCard : Card;
 }

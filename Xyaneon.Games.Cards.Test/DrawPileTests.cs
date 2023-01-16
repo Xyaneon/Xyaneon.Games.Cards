@@ -74,11 +74,10 @@ namespace Xyaneon.Games.Cards.Test
             // Arrange.
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
-            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm = null;
 
             // Act.
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
-                drawPile.Shuffle(shuffleAlgorithm);
+                drawPile.Shuffle((ShuffleFunction<IntCard>)null);
             });
 
             // Assert.
@@ -99,8 +98,7 @@ namespace Xyaneon.Games.Cards.Test
             // For the custom shuffling algorithm, simply reverse the existing
             // card order as a predictable way of determining the shuffling was
             // done correctly in a unit testing context.
-            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
-                cards => cards.Reverse().ToList();
+            ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
             var expectedCardList = cards.Reverse().ToList();
 
             // Act.
@@ -158,7 +156,7 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
-        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
         /// method rejects a null <see cref="DrawPile{TCard}"/> argument.
         /// </summary>
         [TestMethod]
@@ -170,8 +168,7 @@ namespace Xyaneon.Games.Cards.Test
             // For the custom shuffling algorithm, simply reverse the existing
             // card order as a predictable way of determining the shuffling was
             // done correctly in a unit testing context.
-            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
-                cards => cards.Reverse().ToList();
+            ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
 
             // Act.
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
@@ -183,8 +180,8 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
-        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
-        /// method rejects a null <see cref="Func{IEnumerable{TCard}, IList{TCard}})"/> argument.
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
+        /// method rejects a null <see cref="ShuffleFunction{TCard})"/> argument.
         /// </summary>
         [TestMethod]
         public void DrawPile_ShuffleInCustomDrawPileShouldRejectNullAlgorithmTest()
@@ -197,7 +194,7 @@ namespace Xyaneon.Games.Cards.Test
 
             // Act.
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
-                drawPile1.ShuffleIn(drawPile2, (Func<IEnumerable<IntCard>, IList<IntCard>>)null);
+                drawPile1.ShuffleIn(drawPile2, (ShuffleFunction<IntCard>)null);
             });
 
             // Assert.
@@ -205,7 +202,7 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
-        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
         /// functionality with valid arguments.
         /// </summary>
         [TestMethod]
@@ -219,8 +216,7 @@ namespace Xyaneon.Games.Cards.Test
             // For the custom shuffling algorithm, simply reverse the existing
             // card order as a predictable way of determining the shuffling was
             // done correctly in a unit testing context.
-            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
-                cards => cards.Reverse().ToList();
+            ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
             var expectedCardList = cards2.Concat(cards1).Reverse().ToList();
 
             // Act.
@@ -277,7 +273,7 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
-        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
         /// method rejects a null <see cref="IEnumerable{TCard}"/> argument.
         /// </summary>
         [TestMethod]
@@ -289,8 +285,7 @@ namespace Xyaneon.Games.Cards.Test
             // For the custom shuffling algorithm, simply reverse the existing
             // card order as a predictable way of determining the shuffling was
             // done correctly in a unit testing context.
-            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
-                cards => cards.Reverse().ToList();
+            ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
 
             // Act.
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
@@ -302,8 +297,8 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
-        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
-        /// method rejects a null <see cref="Func{IEnumerable{TCard}, IList{TCard}})"/> argument.
+        /// Ensures the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
+        /// method rejects a null <see cref="ShuffleFunction{TCard})"/> argument.
         /// </summary>
         [TestMethod]
         public void DrawPile_ShuffleInCustomEnumerableShouldRejectNullAlgorithmTest()
@@ -315,7 +310,7 @@ namespace Xyaneon.Games.Cards.Test
 
             // Act.
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
-                drawPile.ShuffleIn(cards2, (Func<IEnumerable<IntCard>, IList<IntCard>>)null);
+                drawPile.ShuffleIn(cards2, (ShuffleFunction<IntCard>)null);
             });
 
             // Assert.
@@ -323,7 +318,7 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         /// <summary>
-        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, Func{IEnumerable{TCard}, IList{TCard}})"/>
+        /// Tests the <see cref="DrawPile{TCard}.ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
         /// functionality with valid arguments.
         /// </summary>
         [TestMethod]
@@ -336,8 +331,7 @@ namespace Xyaneon.Games.Cards.Test
             // For the custom shuffling algorithm, simply reverse the existing
             // card order as a predictable way of determining the shuffling was
             // done correctly in a unit testing context.
-            Func<IEnumerable<IntCard>, IList<IntCard>> shuffleAlgorithm =
-                cards => cards.Reverse().ToList();
+            ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
             var expectedCardList = cards2.Reverse().Concat(cards1).Reverse().ToList();
 
             // Act.
