@@ -300,6 +300,13 @@ namespace Xyaneon.Games.Cards
         /// <exception cref="ArgumentNullException">
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This interface method is deprecated, along with all others using
+        /// <see cref="IShuffleAlgorithm{TCard}"/>. Instead, you should use
+        /// the <see cref="Shuffle(ShuffleFunction{TCard})"/> method.
+        /// </remarks>
+        /// <seealso cref="Shuffle(ShuffleFunction{TCard})"/>
+        [Obsolete("IShuffleAlgorithm interface methods are deprecated. Use Shuffle(ShuffleFunction<TCard>) instead.")]
         public void Shuffle(IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (shuffleAlgorithm == null)
@@ -365,7 +372,15 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="other"/> will be emptied of all of its cards as a
         /// result of calling this algorithm.
         /// </para>
+        /// <para>
+        /// This interface method is deprecated, along with all others using
+        /// <see cref="IShuffleAlgorithm{TCard}"/>. Instead, you should use
+        /// the <see cref="ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
+        /// method.
+        /// </para>
         /// </remarks>
+        /// <seealso cref="ShuffleIn(IDrawPile{TCard}, ShuffleFunction{TCard})"/>
+        [Obsolete("IShuffleAlgorithm interface methods are deprecated. Use ShuffleIn(IDrawPile<TCard>, ShuffleFunction<TCard>) instead.")]
         public void ShuffleIn(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (other == null)
@@ -425,6 +440,14 @@ namespace Xyaneon.Games.Cards
         /// -or-
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
+        /// <remarks>
+        /// This interface method is deprecated, along with all others using
+        /// <see cref="IShuffleAlgorithm{TCard}"/>. Instead, you should use
+        /// the <see cref="ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
+        /// method.
+        /// </remarks>
+        /// <seealso cref="ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
+        [Obsolete("IShuffleAlgorithm interface methods are deprecated. Use ShuffleIn(IEnumerable<TCard>, ShuffleFunction<TCard>) instead.")]
         public void ShuffleIn(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm)
         {
             if (cards == null)
