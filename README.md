@@ -102,4 +102,3 @@ Please see the [LICENSE.txt][License] file for details.
 [License]: https://github.com/Xyaneon/Xyaneon.Games.Cards/blob/main/LICENSE.txt
 [NuGet package]: https://www.nuget.org/packages/Xyaneon.Games.Cards/
 [StandardPlayingCards]: https://github.com/Xyaneon/Xyaneon.Games.Cards/tree/main/Xyaneon.Games.Cards/StandardPlayingCards
-[Travis CI]: https://travis-ci.com/Xyaneon/Xyaneon.Games.Cards
