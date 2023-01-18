@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xyaneon.Games.Cards.StandardPlayingCards;
+using Xyaneon.Games.Cards.Test.Extensions;
 
 namespace Xyaneon.Games.Cards.Test
 {
@@ -48,6 +50,20 @@ namespace Xyaneon.Games.Cards.Test
                 Assert.AreEqual(52 + i, decks[i].Cards.Count);
                 Assert.AreEqual(i, decks[i].Cards.OfType<Joker>().Count());
             }
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void StandardPlayingCardDeck_Constructor_ShouldThrowForNegativeNumberOfJokers()
+        {
+            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+                _ = new StandardPlayingCardDeck(numberOfJokers: -1);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(
+                actualException,
+                "The number of jokers to include in the deck cannot be less than zero."
+            );
         }
     }
 }
