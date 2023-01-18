@@ -5,17 +5,9 @@ using Xyaneon.Games.Cards.StandardPlayingCards;
 
 namespace Xyaneon.Games.Cards.Test
 {
-    /// <summary>
-    /// Provides unit testing methods for the
-    /// <see cref="StandardPlayingCardDeck"/> class.
-    /// </summary>
     [TestClass]
     public class StandardPlayingCardDeckTests
     {
-        /// <summary>
-        /// Tests basic initialization of the
-        /// <see cref="StandardPlayingCardDeck"/> class.
-        /// </summary>
         [TestMethod]
         public void StandardPlayingCardDeck_BasicInitializationTest()
         {
@@ -42,10 +34,6 @@ namespace Xyaneon.Games.Cards.Test
             }
         }
 
-        /// <summary>
-        /// Tests initialization of the <see cref="StandardPlayingCardDeck"/>
-        /// class with jokers.
-        /// </summary>
         [TestMethod]
         [Timeout(1000)]
         public void StandardPlayingCardDeck_JokersInitializationTest()
