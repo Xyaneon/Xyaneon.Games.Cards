@@ -237,6 +237,34 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_PlaceAtBottomTest()
+        {
+            var expectedCards = new IntCard[]
+            {
+                // 3 (new top), 2, 1, 4 (new bottom)
+                new IntCard(3), new IntCard(2), new IntCard(1), new IntCard(4)
+            };
+            var cards = new IntCard[]
+            {
+                // 1 (old bottom), 2, 3, 4 (old top)
+                new IntCard(1), new IntCard(2), new IntCard(3), new IntCard(4)
+            };
+            var drawPile = new DrawPile<IntCard>(cards);
+            List<IntCard> actualCards;
+
+            var drawnCard = drawPile.Draw();
+            drawPile.PlaceAtBottom(drawnCard); // place card with value 4 at the bottom
+            actualCards = new List<IntCard>(drawPile.Cards);
+
+            // Use collections assertions for lists because HashSet is unable to compare different sets.
+            // Otherwise, GetHashCode and Equals methods would have to be tamed.
+            CollectionAssert.AreEqual(expectedCards, actualCards, Comparer<IntCard>.Create((a, b) =>
+            {
+                return a.Value - b.Value;
+            }));
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
@@ -452,34 +480,6 @@ namespace Xyaneon.Games.Cards.Test
             Assert.That.CardSetsAreEqual(expectedCardSet, actualCardSet);
             Assert.That.CardSetsAreEqual(expectedCardSet, new HashSet<IntCard>(drawnCards));
             Assert.That.DrawPileIsEmpty(drawPile);
-        }
-
-        [TestMethod]
-        public void DrawPile_PlaceAtBottomTest()
-        {
-            var expectedCards = new IntCard[]
-            {
-                // 3 (new top), 2, 1, 4 (new bottom)
-                new IntCard(3), new IntCard(2), new IntCard(1), new IntCard(4)
-            };
-            var cards = new IntCard[]
-            {
-                // 1 (old bottom), 2, 3, 4 (old top)
-                new IntCard(1), new IntCard(2), new IntCard(3), new IntCard(4)
-            };
-            var drawPile = new DrawPile<IntCard>(cards);
-            List<IntCard> actualCards;
-
-            var drawnCard = drawPile.Draw();
-            drawPile.PlaceAtBottom(drawnCard); // place card with value 4 at the bottom
-            actualCards = new List<IntCard>(drawPile.Cards);
-
-            // Use collections assertions for lists because HashSet is unable to compare different sets.
-            // Otherwise, GetHashCode and Equals methods would have to be tamed.
-            CollectionAssert.AreEqual(expectedCards, actualCards, Comparer<IntCard>.Create((a, b) =>
-            {
-                return a.Value - b.Value;
-            }));
         }
     }
 }
