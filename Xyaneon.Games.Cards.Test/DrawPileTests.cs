@@ -43,6 +43,33 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_Draw_ShouldRemoveAndReturnTopCard()
+        {
+            var topCard = new IntCard(1);
+            var middleCard = new IntCard(2);
+            var bottomCard = new IntCard(3);
+            var drawPile = new DrawPile<IntCard>(new IntCard[] { bottomCard, middleCard, topCard });
+            var expectedRemainingCardsList = new IntCard[] { middleCard, bottomCard };
+
+            var actualDrawnCard = drawPile.Draw();
+
+            Assert.AreSame(topCard, actualDrawnCard);
+            Assert.That.CardListsAreEqual(expectedRemainingCardsList, drawPile.Cards);
+        }
+
+        [TestMethod]
+        public void DrawPile_Draw_ShouldThrowExceptionWhenEmpty()
+        {
+            var drawPile = new DrawPile<IntCard>();
+
+            var actualException = Assert.ThrowsException<InvalidOperationException>(() => {
+                drawPile.Draw();
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "There are no cards left to draw.");
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
