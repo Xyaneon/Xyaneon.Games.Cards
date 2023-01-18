@@ -111,6 +111,50 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_DrawAtMost_ShouldRemoveAndReturnTopCards()
+        {
+            var topCard = new IntCard(1);
+            var middleCard = new IntCard(2);
+            var bottomCard = new IntCard(3);
+            var drawPile = new DrawPile<IntCard>(new IntCard[] { bottomCard, middleCard, topCard });
+            var expectedDrawnCardsList = new IntCard[] { topCard, middleCard };
+            var expectedRemainingCardsList = new IntCard[] { bottomCard };
+
+            IEnumerable<IntCard> actualDrawnCards = drawPile.DrawAtMost(2);
+
+            CollectionAssert.AreEqual(expectedDrawnCardsList, actualDrawnCards.ToList());
+            Assert.That.CardListsAreEqual(expectedRemainingCardsList, drawPile.Cards);
+        }
+
+        [TestMethod]
+        public void DrawPile_DrawAtMost_ShouldRemoveAndReturnAllCardsIfMoreRequested()
+        {
+            var topCard = new IntCard(1);
+            var middleCard = new IntCard(2);
+            var bottomCard = new IntCard(3);
+            var drawPile = new DrawPile<IntCard>(new IntCard[] { bottomCard, middleCard, topCard });
+            var expectedDrawnCardsList = new IntCard[] { topCard, middleCard, bottomCard };
+            var expectedRemainingCardsList = new IntCard[] { bottomCard };
+
+            IEnumerable<IntCard> actualDrawnCards = drawPile.DrawAtMost(4);
+
+            CollectionAssert.AreEqual(expectedDrawnCardsList, actualDrawnCards.ToList());
+            Assert.That.DrawPileIsEmpty(drawPile);
+        }
+
+        [TestMethod]
+        public void DrawPile_DrawAtMost_ShouldReturnEmptyCollectionForEmptyDrawPile()
+        {
+            var drawPile = new DrawPile<IntCard>();
+
+            IEnumerable<IntCard> actualDrawnCards = drawPile.DrawAtMost(1);
+
+            Assert.That.DrawPileIsEmpty(drawPile);
+            Assert.IsNotNull(actualDrawnCards);
+            Assert.AreEqual(0, actualDrawnCards.Count());
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
