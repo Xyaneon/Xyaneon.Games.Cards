@@ -155,6 +155,32 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_DrawAtMost_ShouldReturnEmptyCollectionForZeroRequestedCards()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            IEnumerable<IntCard> actualDrawnCards = drawPile.DrawAtMost(0);
+
+            Assert.That.CardListsAreEqual(cards.Reverse().ToList(), drawPile.Cards);
+            Assert.IsNotNull(actualDrawnCards);
+            Assert.AreEqual(0, actualDrawnCards.Count());
+        }
+
+        [TestMethod]
+        public void DrawPile_DrawAtMost_ShouldThrowExceptionForNegativeRequestedCards()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+                drawPile.DrawAtMost(-1);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "Non-negative number required.");
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
