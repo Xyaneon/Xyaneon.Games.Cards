@@ -11,19 +11,16 @@ namespace Xyaneon.Games.Cards.Test
         [TestMethod]
         public void StandardPlayingCardDeck_BasicInitializationTest()
         {
-            // Arrange.
             const bool expectedFaceUp = true;
             const bool expectedFaceDown = false;
             StandardPlayingCardDeck defaultDeck;
             StandardPlayingCardDeck faceUpDeck;
             StandardPlayingCardDeck faceDownDeck;
 
-            // Act.
             defaultDeck = new StandardPlayingCardDeck();
             faceUpDeck = new StandardPlayingCardDeck(expectedFaceUp);
             faceDownDeck = new StandardPlayingCardDeck(expectedFaceDown);
 
-            // Assert.
             Assert.AreEqual(expectedFaceDown, defaultDeck.IsFaceUp);
             Assert.AreEqual(expectedFaceUp, faceUpDeck.IsFaceUp);
             Assert.AreEqual(expectedFaceDown, faceDownDeck.IsFaceUp);
@@ -38,17 +35,14 @@ namespace Xyaneon.Games.Cards.Test
         [Timeout(1000)]
         public void StandardPlayingCardDeck_JokersInitializationTest()
         {
-            // Arrange.
             const int testUpTo = 3;
             var decks = new List<StandardPlayingCardDeck>(testUpTo);
 
-            // Act.
             for (int i = 0; i < testUpTo; i++)
             {
                 decks.Add(new StandardPlayingCardDeck(numberOfJokers: i));
             }
 
-            // Assert.
             for (int i = 0; i < testUpTo; i++)
             {
                 Assert.AreEqual(52 + i, decks[i].Cards.Count);
