@@ -278,6 +278,34 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_PlaceOnTop_ShouldPlaceCardOnTop()
+        {
+            var topCard = new IntCard(1);
+            var middleCard = new IntCard(2);
+            var bottomCard = new IntCard(3);
+            var insertedCard = new IntCard(4);
+            var drawPile = new DrawPile<IntCard>(new IntCard[] { bottomCard, middleCard, topCard });
+            var expectedCardsList = new IntCard[] { insertedCard, topCard, middleCard, bottomCard };
+
+            drawPile.PlaceOnTop(insertedCard);
+
+            Assert.That.CardListsAreEqual(expectedCardsList, drawPile.Cards);
+        }
+
+        [TestMethod]
+        public void DrawPile_PlaceOnTop_ShouldThrowExceptionForNullCard()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.PlaceOnTop(null);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "The card to place on top of the draw pile cannot be null.");
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
