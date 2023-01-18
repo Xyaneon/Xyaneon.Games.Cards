@@ -181,6 +181,62 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_Insert_ShouldInsertCardAtExpectedIndex()
+        {
+            var topCard = new IntCard(1);
+            var middleCard = new IntCard(2);
+            var bottomCard = new IntCard(3);
+            var insertedCard = new IntCard(4);
+            var drawPile = new DrawPile<IntCard>(new IntCard[] { bottomCard, middleCard, topCard });
+            var expectedRemainingCardsList = new IntCard[] { topCard, insertedCard, middleCard, bottomCard };
+
+            drawPile.Insert(1, insertedCard);
+
+            Assert.That.CardListsAreEqual(expectedRemainingCardsList.Reverse().ToList(), drawPile.Cards);
+        }
+
+        [TestMethod]
+        public void DrawPile_Insert_ShouldThrowExceptionForNullCard()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.Insert(1, null);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "The card to insert into the draw pile cannot be null.");
+        }
+
+        [TestMethod]
+        public void DrawPile_Insert_ShouldThrowExceptionForNegativeIndex()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+            var insertedCard = new IntCard(4);
+
+            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+                drawPile.Insert(-1, insertedCard);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "The position to insert the card into the draw pile at cannot be less than zero.");
+        }
+
+        [TestMethod]
+        public void DrawPile_Insert_ShouldThrowExceptionForIndexAboveUpperBound()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+            var insertedCard = new IntCard(4);
+
+            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+                drawPile.Insert(4, insertedCard);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "The position to insert the card into the draw pile at cannot be greater than the number of cards in the draw pile.");
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
