@@ -265,6 +265,19 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_PlaceAtBottom_ShouldThrowExceptionForNullCard()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+                drawPile.PlaceAtBottom(null);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "The card to place at the bottom of the draw pile cannot be null.");
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
