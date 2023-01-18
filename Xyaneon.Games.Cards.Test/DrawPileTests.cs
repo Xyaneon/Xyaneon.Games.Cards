@@ -70,6 +70,47 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        public void DrawPile_DrawCount_ShouldRemoveAndReturnTopCards()
+        {
+            var topCard = new IntCard(1);
+            var middleCard = new IntCard(2);
+            var bottomCard = new IntCard(3);
+            var drawPile = new DrawPile<IntCard>(new IntCard[] { bottomCard, middleCard, topCard });
+            var expectedDrawnCardsList = new IntCard[] { topCard, middleCard };
+            var expectedRemainingCardsList = new IntCard[] { bottomCard };
+
+            IEnumerable<IntCard> actualDrawnCards = drawPile.Draw(2);
+
+            CollectionAssert.AreEqual(expectedDrawnCardsList, actualDrawnCards.ToList());
+            Assert.That.CardListsAreEqual(expectedRemainingCardsList, drawPile.Cards);
+        }
+
+        [TestMethod]
+        public void DrawPile_DrawCount_ShouldThrowExceptionWhenEmpty()
+        {
+            var drawPile = new DrawPile<IntCard>();
+
+            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+                drawPile.Draw(1);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "Too few cards to draw in this draw pile.");
+        }
+
+        [TestMethod]
+        public void DrawPile_DrawCount_ShouldThrowExceptionWhenTooManyCardsDrawn()
+        {
+            var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
+            var drawPile = new DrawPile<IntCard>(cards);
+
+            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+                drawPile.Draw(4);
+            });
+
+            Assert.That.ExceptionMessageStartsWith(actualException, "Too few cards to draw in this draw pile.");
+        }
+
+        [TestMethod]
         public void DrawPile_BasicShuffleTest()
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
