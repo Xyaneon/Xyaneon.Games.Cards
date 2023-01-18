@@ -11,7 +11,7 @@ namespace Xyaneon.Games.Cards.Test
     public class StandardPlayingCardDeckTests
     {
         [TestMethod]
-        public void StandardPlayingCardDeck_BasicInitializationTest()
+        public void StandardPlayingCardDeck_Constructor_ShouldInitializeDefaultNumberOfJokers()
         {
             const bool expectedFaceUp = true;
             const bool expectedFaceDown = false;
@@ -34,22 +34,17 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
+        [DataRow(1)]
+        [DataRow(2)]
+        [DataRow(3)]
         [Timeout(1000)]
-        public void StandardPlayingCardDeck_JokersInitializationTest()
+        public void StandardPlayingCardDeck_Constructor_ShouldInitializeWithExpectedNumberOfCardsForJokers(int numberOfJokers)
         {
-            const int testUpTo = 3;
-            var decks = new List<StandardPlayingCardDeck>(testUpTo);
+            var deck = new StandardPlayingCardDeck(numberOfJokers: numberOfJokers);
+            var expectedTotalCards = 52 + numberOfJokers;
 
-            for (int i = 0; i < testUpTo; i++)
-            {
-                decks.Add(new StandardPlayingCardDeck(numberOfJokers: i));
-            }
-
-            for (int i = 0; i < testUpTo; i++)
-            {
-                Assert.AreEqual(52 + i, decks[i].Cards.Count);
-                Assert.AreEqual(i, decks[i].Cards.OfType<Joker>().Count());
-            }
+            Assert.AreEqual(expectedTotalCards, deck.Cards.Count);
+            Assert.AreEqual(numberOfJokers, deck.Cards.OfType<Joker>().Count());
         }
 
         [TestMethod]
