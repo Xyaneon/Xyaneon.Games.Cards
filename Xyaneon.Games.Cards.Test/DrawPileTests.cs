@@ -104,9 +104,7 @@ namespace Xyaneon.Games.Cards.Test
             var expectedCardSet = new HashSet<IntCard>(cards);
             List<IntCard> actualCardList;
             var drawPile = new DrawPile<IntCard>(cards);
-            // For the custom shuffling algorithm, simply reverse the existing
-            // card order as a predictable way of determining the shuffling was
-            // done correctly in a unit testing context.
+
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
             var expectedCardList = cards.Reverse().ToList();
 
@@ -153,9 +151,7 @@ namespace Xyaneon.Games.Cards.Test
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
-            // For the custom shuffling algorithm, simply reverse the existing
-            // card order as a predictable way of determining the shuffling was
-            // done correctly in a unit testing context.
+
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
 
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
@@ -187,9 +183,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
             var drawPile1 = new DrawPile<IntCard>(cards1);
             var drawPile2 = new DrawPile<IntCard>(cards2);
-            // For the custom shuffling algorithm, simply reverse the existing
-            // card order as a predictable way of determining the shuffling was
-            // done correctly in a unit testing context.
+
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
             var expectedCardList = cards2.Concat(cards1).Reverse().ToList();
 
@@ -235,9 +229,7 @@ namespace Xyaneon.Games.Cards.Test
         {
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
-            // For the custom shuffling algorithm, simply reverse the existing
-            // card order as a predictable way of determining the shuffling was
-            // done correctly in a unit testing context.
+
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
 
             var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
@@ -267,9 +259,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards1 = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
             var drawPile = new DrawPile<IntCard>(cards1);
-            // For the custom shuffling algorithm, simply reverse the existing
-            // card order as a predictable way of determining the shuffling was
-            // done correctly in a unit testing context.
+
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
             var expectedCardList = cards2.Reverse().Concat(cards1).Reverse().ToList();
 
