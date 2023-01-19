@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xyaneon.Games.Cards.StandardPlayingCards;
 using Xyaneon.Games.Cards.Test.Extensions;
