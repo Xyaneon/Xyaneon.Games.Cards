@@ -11,8 +11,6 @@ permissions:
 
 jobs:
   build:
-    environment: Production
-
     runs-on: ubuntu-latest
 
     steps:
