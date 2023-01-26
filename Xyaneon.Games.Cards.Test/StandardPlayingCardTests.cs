@@ -21,6 +21,46 @@ namespace Xyaneon.Games.Cards.Test
 
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
+        public void StandardPlayingCard_Equals_ShouldReturnTrueWhenBothCardsHaveSameRankAndSuit(Rank rank, Suit suit)
+        {
+            var card1 = new StandardPlayingCard(rank, suit);
+            var card2 = new StandardPlayingCard(rank, suit);
+
+            Assert.IsFalse(ReferenceEquals(card1, card2));
+            Assert.IsTrue(card1.Equals(card2));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
+        public void StandardPlayingCard_Equals_ShouldReturnFalseWhenOtherCardIsNull(Rank rank, Suit suit)
+        {
+            var card = new StandardPlayingCard(rank, suit);
+
+            Assert.IsFalse(card.Equals(null));
+        }
+
+        [TestMethod]
+        public void StandardPlayingCard_Equals_ShouldReturnFalseWhenRanksDoNotMatch()
+        {
+            var suit = Suit.Clubs;
+            var card1 = new StandardPlayingCard(Rank.Ace, suit);
+            var card2 = new StandardPlayingCard(Rank.Two, suit);
+
+            Assert.IsFalse(card1.Equals(card2));
+        }
+
+        [TestMethod]
+        public void StandardPlayingCard_Equals_ShouldReturnFalseWhenSuitsDoNotMatch()
+        {
+            var rank = Rank.Ace;
+            var card1 = new StandardPlayingCard(rank, Suit.Clubs);
+            var card2 = new StandardPlayingCard(rank, Suit.Diamonds);
+
+            Assert.IsFalse(card1.Equals(card2));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
         public void StandardPlayingCard_EqualityTest(Rank rank, Suit suit)
         {
             var card1 = new StandardPlayingCard(rank, suit);
