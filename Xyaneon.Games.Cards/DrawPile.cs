@@ -468,9 +468,7 @@ namespace Xyaneon.Games.Cards
 
         private void ShuffleInBase(IDrawPile<TCard> other, ShuffleFunction<TCard> shuffleAlgorithm)
         {
-            IEnumerable<TCard> cardsToShuffle = _cards.Concat(other.DrawAll());
-            IList<TCard> shuffledCards = shuffleAlgorithm(cardsToShuffle);
-            _cards = new Stack<TCard>(shuffledCards);
+            ShuffleInBase(other.DrawAll(), shuffleAlgorithm);
         }
 
         private void ShuffleInBase(IEnumerable<TCard> cards, ShuffleFunction<TCard> shuffleAlgorithm)
