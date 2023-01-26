@@ -6,17 +6,9 @@ using Xyaneon.Games.Cards.StandardPlayingCards;
 
 namespace Xyaneon.Games.Cards.Test
 {
-    /// <summary>
-    /// Provides unit testing methods for the
-    /// <see cref="StandardPlayingCard"/> class.
-    /// </summary>
     [TestClass]
     public class StandardPlayingCardTests
     {
-        /// <summary>
-        /// Tests basic initialization of the <see cref="StandardPlayingCard"/>
-        /// class.
-        /// </summary>
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
         public void StandardPlayingCard_BasicInitializationTest(Rank rank, Suit suit)
@@ -27,10 +19,6 @@ namespace Xyaneon.Games.Cards.Test
             Assert.AreEqual(suit, card.Suit);
         }
 
-        /// <summary>
-        /// Tests the <see cref="IEquatable{T}"/> implementation of the
-        /// <see cref="StandardPlayingCard"/> class.
-        /// </summary>
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
         public void StandardPlayingCard_EqualityTest(Rank rank, Suit suit)
