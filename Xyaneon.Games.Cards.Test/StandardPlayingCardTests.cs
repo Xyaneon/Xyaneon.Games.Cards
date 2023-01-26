@@ -110,6 +110,16 @@ namespace Xyaneon.Games.Cards.Test
 
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
+        public void StandardPlayingCard_GetHashCode_ShouldReturnHashCode(Rank rank, Suit suit)
+        {
+            var card = new StandardPlayingCard(rank, suit);
+            int expectedHashCode = rank.GetHashCode() ^ suit.GetHashCode();
+
+            Assert.AreEqual(expectedHashCode, card.GetHashCode());
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
         public void StandardPlayingCard_EqualsOperator_ShouldReturnTrueWhenRankAndSuitMatch(Rank rank, Suit suit)
         {
             var card1 = new StandardPlayingCard(rank, suit);
