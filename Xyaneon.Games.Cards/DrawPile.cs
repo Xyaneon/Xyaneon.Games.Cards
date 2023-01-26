@@ -446,9 +446,6 @@ namespace Xyaneon.Games.Cards
 
         #region Fields
 
-        /// <summary>
-        /// Private backing field for the <see cref="Cards"/> property.
-        /// </summary>
         private Stack<TCard> _cards;
 
         #endregion // End fields region.
