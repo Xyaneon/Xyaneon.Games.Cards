@@ -74,7 +74,9 @@ drawPile.PlaceOnTop(cardToPlaceOnTop);
 myDrawPile.Shuffle();
 
 // Shuffle the draw pile using a custom shuffling algorithm you implemented.
-IShuffleAlgorithm<MyCard> algorithm = new MyShuffleAlgorithm();
+ShuffleFunction<MyCard> shuffleAlgorithm = cards => {
+    // ...your implementation in here.
+}
 myDrawPile.Shuffle(algorithm);
 
 // Shuffle one draw pile into another.
