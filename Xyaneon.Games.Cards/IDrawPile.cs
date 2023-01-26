@@ -147,7 +147,7 @@ namespace Xyaneon.Games.Cards
         /// </summary>
         /// <remarks>
         /// If you want to use a custom shuffling method instead, then consider
-        /// using the <see cref="Shuffle(IShuffleAlgorithm{TCard})"/> overload
+        /// using the <see cref="Shuffle(ShuffleFunction{TCard})"/> overload
         /// method.
         /// </remarks>
         void Shuffle();
@@ -157,18 +157,12 @@ namespace Xyaneon.Games.Cards
         /// using the supplied shuffling algorithm.
         /// </summary>
         /// <param name="shuffleAlgorithm">
-        /// The object providing the shuffling algorithm to use.
+        /// The delegate providing the shuffling algorithm to use.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
-        /// <remarks>
-        /// This interface method is deprecated, and will be replaced by a new
-        /// one in an upcoming major release which will replace the usage of
-        /// <see cref="IShuffleAlgorithm{TCard}"/> with a named delegate type.
-        /// </remarks>
-        [Obsolete("IShuffleAlgorithm will be removed in favor of a named delegate in an upcoming major release.")]
-        void Shuffle(IShuffleAlgorithm<TCard> shuffleAlgorithm);
+        void Shuffle(ShuffleFunction<TCard> shuffleAlgorithm);
 
         /// <summary>
         /// Shuffles the provided draw pile into this
@@ -183,10 +177,9 @@ namespace Xyaneon.Games.Cards
         /// </exception>
         /// <remarks>
         /// <para>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
-        /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
+        /// This method will use a default shuffling algorithm. If you want to
+        /// use a custom shuffling method instead, then consider using the
+        /// <see cref="ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
         /// overload method.
         /// </para>
         /// <para>
@@ -206,7 +199,7 @@ namespace Xyaneon.Games.Cards
         /// <see cref="IDrawPile{TCard}"/>.
         /// </param>
         /// <param name="shuffleAlgorithm">
-        /// The object providing the shuffling algorithm to use.
+        /// The delegate providing the shuffling algorithm to use.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="other"/> is <see langword="null"/>.
@@ -218,14 +211,8 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="other"/> will be emptied of all of its cards as a
         /// result of calling this algorithm.
         /// </para>
-        /// <para>
-        /// This interface method is deprecated, and will be replaced by a new
-        /// one in an upcoming major release which will replace the usage of
-        /// <see cref="IShuffleAlgorithm{TCard}"/> with a named delegate type.
-        /// </para>
         /// </remarks>
-        [Obsolete("IShuffleAlgorithm will be removed in favor of a named delegate in an upcoming major release.")]
-        void ShuffleIn(IDrawPile<TCard> other, IShuffleAlgorithm<TCard> shuffleAlgorithm);
+        void ShuffleIn(IDrawPile<TCard> other, ShuffleFunction<TCard> shuffleAlgorithm);
 
         /// <summary>
         /// Shuffles the provided <paramref name="cards"/> into this
@@ -239,10 +226,9 @@ namespace Xyaneon.Games.Cards
         /// <paramref name="cards"/> is <see langword="null"/>.
         /// </exception>
         /// <remarks>
-        /// This method will use the shuffling algorithm provided by the
-        /// <see cref="DefaultShuffleAlgorithm{TCard}"/>. If you want to use
-        /// a custom shuffling method instead, then consider using the
-        /// <see cref="ShuffleIn(IEnumerable{TCard}, IShuffleAlgorithm{TCard})"/>
+        /// This method will use a default shuffling algorithm. If you want to
+        /// use a custom shuffling method instead, then consider using the
+        /// <see cref="ShuffleIn(IEnumerable{TCard}, ShuffleFunction{TCard})"/>
         /// overload method.
         /// </remarks>
         void ShuffleIn(IEnumerable<TCard> cards);
@@ -257,20 +243,14 @@ namespace Xyaneon.Games.Cards
         /// <see cref="IDrawPile{TCard}"/>.
         /// </param>
         /// <param name="shuffleAlgorithm">
-        /// The object providing the shuffling algorithm to use.
+        /// The delegate providing the shuffling algorithm to use.
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="cards"/> is <see langword="null"/>.
         /// -or-
         /// <paramref name="shuffleAlgorithm"/> is <see langword="null"/>.
         /// </exception>
-        /// <remarks>
-        /// This interface method is deprecated, and will be replaced by a new
-        /// one in an upcoming major release which will replace the usage of
-        /// <see cref="IShuffleAlgorithm{TCard}"/> with a named delegate type.
-        /// </remarks>
-        [Obsolete("IShuffleAlgorithm will be removed in favor of a named delegate in an upcoming major release.")]
-        void ShuffleIn(IEnumerable<TCard> cards, IShuffleAlgorithm<TCard> shuffleAlgorithm);
+        void ShuffleIn(IEnumerable<TCard> cards, ShuffleFunction<TCard> shuffleAlgorithm);
 
         #endregion // End methods region.
     }
