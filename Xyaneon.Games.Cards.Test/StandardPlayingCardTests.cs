@@ -21,7 +21,7 @@ namespace Xyaneon.Games.Cards.Test
 
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
-        public void StandardPlayingCard_Equals_ShouldReturnTrueWhenBothCardsHaveSameRankAndSuit(Rank rank, Suit suit)
+        public void StandardPlayingCard_Equals_StandardPlayingCard_ShouldReturnTrueWhenBothCardsHaveSameRankAndSuit(Rank rank, Suit suit)
         {
             var card1 = new StandardPlayingCard(rank, suit);
             var card2 = new StandardPlayingCard(rank, suit);
@@ -32,7 +32,7 @@ namespace Xyaneon.Games.Cards.Test
 
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
-        public void StandardPlayingCard_Equals_ShouldReturnFalseWhenOtherCardIsNull(Rank rank, Suit suit)
+        public void StandardPlayingCard_Equals_StandardPlayingCard_ShouldReturnFalseWhenOtherCardIsNull(Rank rank, Suit suit)
         {
             var card = new StandardPlayingCard(rank, suit);
 
@@ -40,7 +40,7 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
-        public void StandardPlayingCard_Equals_ShouldReturnFalseWhenRanksDoNotMatch()
+        public void StandardPlayingCard_Equals_StandardPlayingCard_ShouldReturnFalseWhenRanksDoNotMatch()
         {
             var suit = Suit.Clubs;
             var card1 = new StandardPlayingCard(Rank.Ace, suit);
@@ -50,13 +50,62 @@ namespace Xyaneon.Games.Cards.Test
         }
 
         [TestMethod]
-        public void StandardPlayingCard_Equals_ShouldReturnFalseWhenSuitsDoNotMatch()
+        public void StandardPlayingCard_Equals_StandardPlayingCard_ShouldReturnFalseWhenSuitsDoNotMatch()
         {
             var rank = Rank.Ace;
             var card1 = new StandardPlayingCard(rank, Suit.Clubs);
             var card2 = new StandardPlayingCard(rank, Suit.Diamonds);
 
             Assert.IsFalse(card1.Equals(card2));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
+        public void StandardPlayingCard_Equals_Object_ShouldReturnTrueWhenBothCardsHaveSameRankAndSuit(Rank rank, Suit suit)
+        {
+            var card1 = new StandardPlayingCard(rank, suit);
+            var card2 = new StandardPlayingCard(rank, suit);
+
+            Assert.IsFalse(ReferenceEquals(card1, card2));
+            Assert.IsTrue(card1.Equals((object)card2));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
+        public void StandardPlayingCard_Equals_Object_ShouldReturnFalseWhenOtherCardIsNull(Rank rank, Suit suit)
+        {
+            var card = new StandardPlayingCard(rank, suit);
+
+            Assert.IsFalse(card.Equals((object)null));
+        }
+
+        [TestMethod]
+        public void StandardPlayingCard_Equals_Object_ShouldReturnFalseWhenRanksDoNotMatch()
+        {
+            var suit = Suit.Clubs;
+            var card1 = new StandardPlayingCard(Rank.Ace, suit);
+            var card2 = new StandardPlayingCard(Rank.Two, suit);
+
+            Assert.IsFalse(card1.Equals((object)card2));
+        }
+
+        [TestMethod]
+        public void StandardPlayingCard_Equals_Object_ShouldReturnFalseWhenSuitsDoNotMatch()
+        {
+            var rank = Rank.Ace;
+            var card1 = new StandardPlayingCard(rank, Suit.Clubs);
+            var card2 = new StandardPlayingCard(rank, Suit.Diamonds);
+
+            Assert.IsFalse(card1.Equals((object)card2));
+        }
+
+        [TestMethod]
+        public void StandardPlayingCard_Equals_Object_ShouldReturnFalseWhenOtherIsNotStandardPlayingCard()
+        {
+            var card = new StandardPlayingCard(Rank.Ace, Suit.Clubs);
+            object obj = new List<int>();
+
+            Assert.IsFalse(card.Equals(obj));
         }
 
         [TestMethod]
