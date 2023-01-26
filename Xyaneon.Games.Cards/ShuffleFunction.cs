@@ -17,12 +17,12 @@ namespace Xyaneon.Games.Cards
     /// <para>
     /// You do not need to define nor supply your own
     /// <see cref="ShuffleFunction{TCard}"/> to shuffle instances of
-    /// <see cref="DrawPile{TCard}"/>. Omitting it will simply make
-    /// <see cref="DrawPile{TCard}"/> use an internal default. However, you
+    /// <see cref="IDrawPile{TCard}"/>. Omitting it will simply make
+    /// <see cref="IDrawPile{TCard}"/> use an internal default. However, you
     /// can create one if you desire specific shuffling behavior, or for
     /// testing purposes.
     /// </para>
     /// </remarks>
-    /// <seealso cref="DrawPile{TCard}"/>
+    /// <seealso cref="IDrawPile{TCard}"/>
     public delegate IList<TCard> ShuffleFunction<TCard>(IEnumerable<TCard> cards) where TCard : Card;
 }
