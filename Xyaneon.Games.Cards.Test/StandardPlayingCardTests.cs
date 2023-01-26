@@ -110,13 +110,23 @@ namespace Xyaneon.Games.Cards.Test
 
         [TestMethod]
         [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
-        public void StandardPlayingCard_EqualityTest(Rank rank, Suit suit)
+        public void StandardPlayingCard_EqualsOperator_ShouldReturnTrueWhenRankAndSuitMatch(Rank rank, Suit suit)
         {
             var card1 = new StandardPlayingCard(rank, suit);
             var card2 = new StandardPlayingCard(rank, suit);
 
             Assert.IsFalse(ReferenceEquals(card1, card2));
             Assert.IsTrue(card1 == card2);
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(AllRanksAndSuitsData), DynamicDataSourceType.Method)]
+        public void StandardPlayingCard_NotEqualsOperator_ShouldReturnTrueWhenRankAndSuitMatch(Rank rank, Suit suit)
+        {
+            var card1 = new StandardPlayingCard(rank, suit);
+            var card2 = new StandardPlayingCard(rank, suit);
+
+            Assert.IsFalse(ReferenceEquals(card1, card2));
             Assert.IsFalse(card1 != card2);
         }
 
