@@ -87,6 +87,8 @@ myDrawPile.ShuffleIn(other); // other is now empty, with its contents added to m
 For a full list of the available properties and methods, see the source code
 for the [`DrawPile<TCard>`][DrawPile class] class.
 
+### Included example: standard playing cards
+
 For an example usage of these classes, see the standard 52-card implementation
 provided with this library under the
 [Xyaneon.Games.Cards.StandardPlayingCards][StandardPlayingCards] namespace.
