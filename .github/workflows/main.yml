@@ -28,7 +28,7 @@ jobs:
       run: dotnet build -c Release --no-restore
       
     - name: Test
-      run: dotnet test -c Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings ./Xyaneon.Games.Dice.Test/coverlet.runsettings
+      run: dotnet test -c Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings ./Xyaneon.Games.Cards.Test/coverlet.runsettings
 
     # Workaround for issue: https://github.com/microsoft/vstest/issues/2378
     - name: Relocate test coverage results
