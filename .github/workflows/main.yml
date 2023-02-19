@@ -36,7 +36,17 @@ jobs:
       run: dotnet build -c Release --no-restore
       
     - name: Test
-      run: dotnet test -c Release --no-build --verbosity normal
+      run: dotnet test -c Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --settings ./Xyaneon.Games.Dice.Test/coverlet.runsettings
+
+    # Workaround for issue: https://github.com/microsoft/vstest/issues/2378
+    - name: Relocate test coverage results
+      run: mv ./Xyaneon.Games.Cards.Test/TestResults/**/coverage.info ./Xyaneon.Games.Cards.Test/TestResults/
+
+    - name: Upload coverage file to Coveralls.io
+      uses: coverallsapp/github-action@1.1.3
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: ./Xyaneon.Games.Cards.Test/TestResults/coverage.info
     
     - name: Semantic Release
       env:
