@@ -51,4 +51,5 @@ jobs:
       uses: coverallsapp/github-action@v2.0.0
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./Xyaneon.Games.Cards.Test/TestResults/coverage.info
+        file: ./Xyaneon.Games.Cards.Test/TestResults/coverage.info
+        format: lcov
