@@ -185,6 +185,13 @@ namespace Xyaneon.Games.Cards
         /// </returns>
         public IEnumerable<TCard> DrawAtMost(int count)
         {
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(count),
+                    count,
+                    "The number of cards to draw must be non-negative.");
+            }
             var drawnCards = new Queue<TCard>(count);
             for (int i = 0; i < count && _cards.Count > 0; i++)
             {
