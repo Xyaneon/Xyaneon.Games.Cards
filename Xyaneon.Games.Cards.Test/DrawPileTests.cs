@@ -177,7 +177,7 @@ namespace Xyaneon.Games.Cards.Test
                 drawPile.DrawAtMost(-1);
             });
 
-            Assert.That.ExceptionMessageStartsWith(actualException, "Non-negative number required.");
+            Assert.That.ExceptionMessageStartsWith(actualException, "The number of cards to draw must be non-negative.");
         }
 
         [TestMethod]
