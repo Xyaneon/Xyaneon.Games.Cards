@@ -35,7 +35,7 @@ jobs:
       run: mv ./Xyaneon.Games.Cards.Test/TestResults/**/coverage.info ./Xyaneon.Games.Cards.Test/TestResults/
 
     - name: Upload coverage file to Coveralls.io
-      uses: coverallsapp/github-action@v2.3.4
+      uses: coverallsapp/github-action@v2.3.6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         file: ./Xyaneon.Games.Cards.Test/TestResults/coverage.info
