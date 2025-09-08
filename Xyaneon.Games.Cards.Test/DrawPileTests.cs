@@ -35,7 +35,7 @@ namespace Xyaneon.Games.Cards.Test
         [TestMethod]
         public void DrawPile_CardsConstructor_ShouldRejectNullCardsCollection()
         {
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 _ = new DrawPile<Card>(null);
             });
 
@@ -62,7 +62,7 @@ namespace Xyaneon.Games.Cards.Test
         {
             var drawPile = new DrawPile<IntCard>();
 
-            var actualException = Assert.ThrowsException<InvalidOperationException>(() => {
+            var actualException = Assert.ThrowsExactly<InvalidOperationException>(() => {
                 drawPile.Draw();
             });
 
@@ -90,7 +90,7 @@ namespace Xyaneon.Games.Cards.Test
         {
             var drawPile = new DrawPile<IntCard>();
 
-            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => {
                 drawPile.Draw(1);
             });
 
@@ -103,7 +103,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => {
                 drawPile.Draw(4);
             });
 
@@ -173,7 +173,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => {
                 drawPile.DrawAtMost(-1);
             });
 
@@ -201,7 +201,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.Insert(1, null);
             });
 
@@ -215,7 +215,7 @@ namespace Xyaneon.Games.Cards.Test
             var drawPile = new DrawPile<IntCard>(cards);
             var insertedCard = new IntCard(4);
 
-            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => {
                 drawPile.Insert(-1, insertedCard);
             });
 
@@ -229,7 +229,7 @@ namespace Xyaneon.Games.Cards.Test
             var drawPile = new DrawPile<IntCard>(cards);
             var insertedCard = new IntCard(4);
 
-            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => {
                 drawPile.Insert(4, insertedCard);
             });
 
@@ -270,7 +270,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.PlaceAtBottom(null);
             });
 
@@ -298,7 +298,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.PlaceOnTop(null);
             });
 
@@ -326,7 +326,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.Shuffle((ShuffleFunction<IntCard>)null);
             });
 
@@ -356,7 +356,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.ShuffleIn((IDrawPile<IntCard>)null);
             });
 
@@ -390,7 +390,7 @@ namespace Xyaneon.Games.Cards.Test
 
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.ShuffleIn((IDrawPile<IntCard>)null, shuffleAlgorithm);
             });
 
@@ -405,7 +405,7 @@ namespace Xyaneon.Games.Cards.Test
             var drawPile1 = new DrawPile<IntCard>(cards1);
             var drawPile2 = new DrawPile<IntCard>(cards2);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile1.ShuffleIn(drawPile2, (ShuffleFunction<IntCard>)null);
             });
 
@@ -436,7 +436,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards = new IntCard[] { new IntCard(1), new IntCard(2), new IntCard(3) };
             var drawPile = new DrawPile<IntCard>(cards);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.ShuffleIn((IEnumerable<IntCard>)null);
             });
 
@@ -468,7 +468,7 @@ namespace Xyaneon.Games.Cards.Test
 
             ShuffleFunction<IntCard> shuffleAlgorithm = cards => cards.Reverse().ToList();
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.ShuffleIn((IEnumerable<IntCard>)null, shuffleAlgorithm);
             });
 
@@ -482,7 +482,7 @@ namespace Xyaneon.Games.Cards.Test
             var cards2 = new IntCard[] { new IntCard(4), new IntCard(5) };
             var drawPile = new DrawPile<IntCard>(cards1);
 
-            var actualException = Assert.ThrowsException<ArgumentNullException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentNullException>(() => {
                 drawPile.ShuffleIn(cards2, (ShuffleFunction<IntCard>)null);
             });
 

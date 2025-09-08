@@ -50,7 +50,7 @@ namespace Xyaneon.Games.Cards.Test
         [Timeout(1000)]
         public void StandardPlayingCardDeck_Constructor_ShouldThrowForNegativeNumberOfJokers()
         {
-            var actualException = Assert.ThrowsException<ArgumentOutOfRangeException>(() => {
+            var actualException = Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => {
                 _ = new StandardPlayingCardDeck(numberOfJokers: -1);
             });
 
